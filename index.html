@@ -23,6 +23,8 @@
 
 
 
+    <link rel="dns-prefetch" href="https://busuanzi.ibruce.info"/>
+
 
 
 
@@ -79,6 +81,8 @@
         <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
+            
+        
 
     
 
@@ -108,13 +112,13 @@
   #scheme-Paradox .sidebar_archives-count,
   #scheme-Paradox .sidebar-colored .sidebar-header,
   #scheme-Paradox .sidebar-colored .sidebar-badge{
-    background-color: #0097A7 !important;
+    background-color: #48D1CC !important;
   }
 
   /* Sidebar User Drop Down Menu Text Color */
   #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
   #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
-    color: #0097A7 !important;
+    color: #48D1CC !important;
   }
 
   #post_entry-right-info,
@@ -127,7 +131,7 @@
   .sidebar-colored .sidebar-nav > .open > a:hover,
   .sidebar-colored .sidebar-nav > .open > a:focus,
   #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
-    color: #0097A7 !important;
+    color: #48D1CC !important;
   }
 
   .toTop {
@@ -335,7 +339,7 @@
         <p class="index-top-block-slogan"><a href="#">
         
             
-                Nova, born to shine!<br>Wind, born to blow!<br>Me, born to be above!
+                <span style='font-style:italic;font-weight:bolder;'>Nova, born to shine!</span><br><span style='font-style:italic;font-weight:bolder;'>Wind, born to blow!</span>
             
         
         </a></p>
@@ -358,23 +362,22 @@
 
     <!-- Search -->
     
-    <!-- Google -->
+
+
+
+
+    <!-- Local -->
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable" method="post" action="">
         <label id="search-label" class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent mdl-shadow--4dp" for="search">
             <i class="material-icons mdl-color-text--white" role="presentation">search</i>
         </label>
 
-        <form autocomplete="off" id="search-form" method="get" action="//google.com/search" accept-charset="UTF-8" class="mdl-textfield__expandable-holder" target="_blank">
-            <input class="mdl-textfield__input search-input" type="search" name="q" id="search" placeholder="">
+        <form autocomplete="off" id="search-form" class="mdl-textfield__expandable-holder">
+            <input type="text" id="search" class="form-control mdl-textfield__input search-input" name="q" results="0" placeholder=""/>
             <label id="search-form-label" class="mdl-textfield__label" for="search"></label>
-
-            <input type="hidden" name="sitesearch" value="https://bearwind.github.io">
         </form>
     </div>
-
-
-
-
+    <div id="local-search-result"></div>
 
 
 
@@ -400,19 +403,19 @@
         </button>
         <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="show-pages-button">
             
-                <a class="index_share-link" href="aboutMe" title="关于我">
+                <a class="index_share-link" href="/aboutMe" title="关于我">
                     <li class="mdl-menu__item mdl-js-ripple-effect">
                         关于我
                     </li>
                 </a>
             
-                <a class="index_share-link" href="tags" title="标签云">
+                <a class="index_share-link" href="/tags" title="标签云">
                     <li class="mdl-menu__item mdl-js-ripple-effect">
                         标签云
                     </li>
                 </a>
             
-                <a class="index_share-link" href="timeline" title="时间轴">
+                <a class="index_share-link" href="/timeline" title="时间轴">
                     <li class="mdl-menu__item mdl-js-ripple-effect">
                         时间轴
                     </li>
@@ -426,6 +429,15 @@
             <span class="visuallyhidden">show menu</span>
         </button>
         <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="menubtn">
+            
+                <!-- All Site UV -->
+                <a class="index_share-link" href="#">
+                    <li class="mdl-menu__item mdl-js-ripple-effect">
+                        <span id="busuanzi_container_site_uv">
+                            <span id="busuanzi_value_site_uv"></span>&nbsp;浏览量
+                        </span>
+                    </li>
+                </a>
             
 
             
@@ -442,12 +454,6 @@
 
             
 
-            
-                <a class="index_share-link" href="https://plus.google.com/share?url=https://bearwind.github.io" target="_blank">
-                    <li class="mdl-menu__item mdl-js-ripple-effect">
-                        分享到 Google+
-                    </li>
-                </a>
             
 
             
@@ -478,7 +484,7 @@
     
 
         <!-- Post Title -->
-        <p class="article-headline-p"><a href="/自言自语origin/"><span>[Top]</span>诞生</a></p>
+        <p class="article-headline-p"><a href="/posts/self-whisper/origin/"><span>[Top]</span>诞生</a></p>
     </div>
 
     <!-- Post Excerpt -->
@@ -489,7 +495,7 @@
         
         &nbsp;&nbsp;&nbsp;
         <span>
-            <a href="/自言自语origin/" target="_self">阅读全文</a>
+            <a href="/posts/self-whisper/origin/" target="_self">阅读全文</a>
         </span>
     </div>
     <!-- Post_entry Info-->
@@ -508,7 +514,7 @@
           
               <!-- Category -->
               <span class="post_entry-category">
-                  <a class="post_category-link" href="/categories/自言自语/">自言自语</a>
+                  <a class="post_category-link" href="/categories/self-whisper/">自言自语</a>
               </span>
             
 
@@ -544,17 +550,17 @@
     
 
         <!-- Post Title -->
-        <p class="article-headline-p"><a href="/谈技轮术pin/">搭建Blog拾遗</a></p>
+        <p class="article-headline-p"><a href="/posts/tech-talker/pin/">搭建Blog拾遗及相关资料归档</a></p>
     </div>
 
     <!-- Post Excerpt -->
     <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
         
-            
+            Node.jsUbuntu搭...
         
         &nbsp;&nbsp;&nbsp;
         <span>
-            <a href="/谈技轮术pin/" target="_self">阅读全文</a>
+            <a href="/posts/tech-talker/pin/" target="_self">阅读全文</a>
         </span>
     </div>
     <!-- Post_entry Info-->
@@ -573,7 +579,7 @@
           
               <!-- Category -->
               <span class="post_entry-category">
-                  <a class="post_category-link" href="/categories/谈技轮术/">谈技轮术</a>
+                  <a class="post_category-link" href="/categories/tech-talker/">谈技论术</a>
               </span>
             
 
@@ -716,7 +722,7 @@
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/自言自语/">自言自语<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/谈技轮术/">谈技轮术<span class="sidebar_archives-count">1</span></a>
+                <a class="sidebar_archives-link" href="/categories/self-whisper/">自言自语<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/tech-talker/">谈技论术<span class="sidebar_archives-count">1</span></a>
             </ul>
         </li>
         
@@ -727,7 +733,7 @@
     <!-- Pages  -->
     
         <li>
-            <a href="aboutMe" title="关于我">
+            <a href="/aboutMe" title="关于我">
                 
                     <i class="material-icons sidebar-material-icons">round-fingerprint-24px.svg</i>
                 
@@ -737,7 +743,7 @@
         
     
         <li>
-            <a href="tags" title="标签云">
+            <a href="/tags" title="标签云">
                 
                     <i class="material-icons sidebar-material-icons">round-book-24px.svg</i>
                 
@@ -747,7 +753,7 @@
         
     
         <li>
-            <a href="timeline" title="时间轴">
+            <a href="/timeline" title="时间轴">
                 
                     <i class="material-icons sidebar-material-icons">round-timeline-24px.svg</i>
                 
@@ -816,6 +822,18 @@ It will not impact the appearance and can give developers a lot of support :)
 
     <!-- Sidebar Image -->
     
+    <span id="footer-image">
+        <a href="https://github.com/bearwind/" target="_blank" title="github">
+            <img src="/img/footer/footer_ico-github.svg" alt="github"><!--
+     --></a>
+    </span>
+
+    <span id="footer-image">
+        <a href="https://www.zhihu.com/people/xiong-feng-1-13-71/activities" target="_blank" title="吱忽">
+            <img src="/img/footer/footer_ico-zhihu.svg" alt="吱忽"><!--
+     --></a>
+    </span>
+
 
 </aside>
 
@@ -843,12 +861,6 @@ It will not impact the appearance and can give developers a lot of support :)
     
 
     <!-- Google + -->
-    
-        <a href="https://www.google.com/" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn footer-sns-gplus">
-                <span class="visuallyhidden">Google Plus</span>
-            </button><!--
-     --></a>
     
 
     <!-- Weibo -->
@@ -936,14 +948,14 @@ It will not impact the appearance and can give developers a lot of support :)
     });
     NProgress.start();
     $('#nprogress .bar').css({
-        'background': '#29d'
+        'background': '#FF3030'
     });
     $('#nprogress .peg').css({
-        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+        'box-shadow': '0 0 10px #FF3030, 0 0 15px #FF3030'
     });
     $('#nprogress .spinner-icon').css({
-        'border-top-color': '#29d',
-        'border-left-color': '#29d'
+        'border-top-color': '#FF3030',
+        'border-left-color': '#FF3030'
     });
     setTimeout(function() {
         NProgress.done();
@@ -957,6 +969,9 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 
+    <!-- Busuanzi -->
+    <script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
 
 
 
@@ -966,6 +981,25 @@ It will not impact the appearance and can give developers a lot of support :)
     
 
     <!-- Local Search-->
+    
+        <script type="text/ls-javascript" id="search-local-js-script">
+    var searchFunc=function(c,a,b){$.ajax({url:c,dataType:"xml",success:function(e){var d=$("entry",e).map(function(){return{title:$("title",this).text(),content:$("content",this).text(),url:$("url",this).text()}}).get();var g=document.getElementById(a);var f=document.getElementById(b);g.addEventListener("input",function(){var i='<ul class="search-result-list">';var h=this.value.trim().toLowerCase().split(/[\s\-]+/);f.innerHTML="";if(this.value.trim().length<=0){return}d.forEach(function(o){var n=true;var s=[];var t=o.title.trim().toLowerCase();var m=o.content.trim().replace(/<[^>]+>/g,"").toLowerCase();var j=o.url;var u=-1;var q=-1;var p=-1;if(t!==""&&m!==""){h.forEach(function(w,x){u=t.indexOf(w);q=m.indexOf(w);if(u<0&&q<0){n=false}else{if(q<0){q=0}if(x===0){p=q}}})}if(n){i+='<li><a href="'+j+'" class="search-result-title" target="_blank">'+t;var r=o.content.trim().replace(/<[^>]+>/g,"");if(p>=0){var k=p-6;var l=p+6;if(k<0){k=0}if(k===0){l=10}if(l>r.length){l=r.length}var v=r.substr(k,l);h.forEach(function(w){var x=new RegExp(w,"gi");v=v.replace(x,'<em class="search-keyword">'+w+"</em>")});i+='<p class="search-result">'+v+"...</p></a>"}}});f.innerHTML=i})}})};
+</script>
+
+
+        <script type="text/ls-javascript" id="search-input-script">
+            var inputArea = document.querySelector('#search');
+            var getSearchFile = function() {
+                var path = 'search.xml';
+                searchFunc(path, 'search', 'local-search-result');
+            }
+
+            if(inputArea) {
+                inputArea.onfocus = function() {
+                    getSearchFile();
+                }
+            }
+        </script>
     
 
 
@@ -980,10 +1014,8 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Import prettify js  -->
 
+    
 
-    
-        <script>lsloader.load("hanabi","/js/hanabi-browser-bundle.js?Pki5+pzkluqu53g+ouMWpA==", true)</script>
-    
 
 
 <!-- Window Load -->
@@ -995,10 +1027,8 @@ It will not impact the appearance and can give developers a lot of support :)
     });
 
     
+        
     
-        
-        
-        HanabiBrowser.start('pre code',true);
     
 </script>
 

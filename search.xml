@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+    
+    <entry>
+      <title>搭建Blog拾遗及相关资料归档</title>
+      <link href="/posts/tech-talker/pin/"/>
+      <url>/posts/tech-talker/pin/</url>
+      <content type="html"><![CDATA[<h4 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h4><p>Ubuntu搭建Node.js环境，我只记两点：</p><ul><li>官网下载最新node版本<br><a href="https://nodejs.org/en/" target="_blank" rel="noopener">node官网</a></li><li><p>创建符号链接，exception：</p><pre><code class="shell">Error: /usr/bin/env: node:没有那个文件或目录</code></pre><blockquote><p>cause: ubuntu避免包冲突，会将nodejs操作命令改为nodejs，而不是node</p></blockquote><p>执行命令：</p><pre><code class="shell">sudo ln -s /usr/bin/nodejs /usr/bin/node</code></pre></li></ul><h4 id="Theme"><a href="#Theme" class="headerlink" title="Theme"></a>Theme</h4><h5 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h5><p>本blog使用的主题为<code>material</code>，也许你可能在执行<code>hexo g</code>的时候可能会遇到如下错误：<br><code>Internal watch failed: watch ENOSPC</code><br>解决办法，执行命令：  </p><pre><code class="shell">echo fs.inotify.max_user_watches=582222 | sudo tee -a /etc/sysctl.conf &amp;&amp; sudo sysctl -p</code></pre><p>然后再执行<code>hexo g</code>.</p><h5 id="相关资料归档"><a href="#相关资料归档" class="headerlink" title="相关资料归档"></a>相关资料归档</h5><ul><li><a href="https://github.com/viosey/hexo-theme-material" target="_blank" rel="noopener">material-theme-github</a></li><li><a href="https://material.viosey.com/docs/#/start" target="_blank" rel="noopener">theme-doc</a></li><li><a href="https://material.io/tools/icons/" target="_blank" rel="noopener">icons</a>, 直接复制icon名称到主题<code>_config.yml</code>相应位置中<pre><code class="yaml">pages:        关于我:            link: &quot;/aboutMe&quot;            icon: round-fingerprint-24px.svg            divider: false</code></pre></li><li>图片压缩，小白玩法： <a href="http://www.yasuotu.com/" target="_blank" rel="noopener">compress-image</a>  </li><li><blockquote><p>感谢教程：<a href="https://my.oschina.net/ryaneLee/blog/638440" target="_blank" rel="noopener">GitHub+Hexo搭建个人Blog</a></p></blockquote></li></ul>]]></content>
+      
+      <categories>
+          
+          <category> 谈技论术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+            <tag> blog </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>诞生</title>
+      <link href="/posts/self-whisper/origin/"/>
+      <url>/posts/self-whisper/origin/</url>
+      <content type="html"><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><blockquote><p>有时候，遥望星空，你可能会惊奇地发现：在某一星区，出现了一颗从来没有见过的明亮星星！<br>然而仅仅过了几个月甚至几天，它又渐渐消失了。<br>—— Nova, 新星</p></blockquote><p>但是我相信Nova从未真正的消逝。</p><h4 id="缘由"><a href="#缘由" class="headerlink" title="缘由"></a>缘由</h4><p><strong> 总是开发着无聊的接口，乏味的系统，一直对能描绘出夺人眼球的美丽脸庞这种技能蠢蠢欲动，<br>但当我面对那如abyss般深不见底的恐怖<code>前端</code>的时候，我想我现在还没有勇气去踏入这条我的不归路。</strong></p><p>作为一只后端程序猿，从没有放弃成为一个全栈开发工程师，挣扎在模板开发引擎的泥潭中，嘴上骂着脏字，手上还不得不敲着<code>${name}</code>和<code>th:replace</code> …  </p><h4 id="波折"><a href="#波折" class="headerlink" title="波折"></a>波折</h4><p>为了使用<code>npm</code>，装个<code>node.js</code>都不能成功时，我更加坚信怀疑前端这个小姐姐我爱不上了…</p><p>而且我竟然显现出了可憎的举措：对网上咒骂<code>js</code>的言论啧啧称赞——得不到我就恨！</p><h4 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h4><p>然后心里的种子在多次的惊鸿一瞥之后，开始生根发芽，直到我看到了public formal version…  </p><blockquote><p>我决定！启动。</p></blockquote>]]></content>
+      
+      <categories>
+          
+          <category> 自言自语 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> me </tag>
+            
+        </tags>
+      
+    </entry>
+    
+  
+  
+</search>
