@@ -3,6 +3,31 @@
   
     
     <entry>
+      <title>分布式环境下的UUID生成策略</title>
+      <link href="/posts/tech-talker/dist_uuid_gen/"/>
+      <url>/posts/tech-talker/dist_uuid_gen/</url>
+      <content type="html"><![CDATA[<h3 id="0-前言"><a href="#0-前言" class="headerlink" title="0 前言"></a>0 <strong>前言</strong></h3><blockquote><p>UUID(Universally Unique Identifier), 通用唯一识别码， 其产生的目的就是为了在分布式的大环境下让每一个独立的有意义的元素都有其唯一的身份识别码，如同我们的身份证号一样。</p></blockquote><h3 id="1-抛砖"><a href="#1-抛砖" class="headerlink" title="1 抛砖"></a>1 <strong>抛砖</strong></h3><h4 id="1-java原生UUID生成方式"><a href="#1-java原生UUID生成方式" class="headerlink" title="1. java原生UUID生成方式"></a>1. java原生UUID生成方式</h4><ul><li><strong>示例</strong><pre><code class="java">String uuid = UUID.randomUUID().toString();System.out.println(uuid);//output: 52f3a858-cd2d-4994-b4f1-9a06839deb45</code></pre></li><li><strong>缺点</strong></li></ul><ol><li>UUID随机生成长度为36位的字符串，太长，占用空间较大，就算去掉<code>-</code>，还是很长</li><li>丑陋，反人类的识别度</li><li>无序，若排序几无可能</li><li>索引效率特别低，入库性能差</li></ol><h4 id="2-mysql数据库自增ID"><a href="#2-mysql数据库自增ID" class="headerlink" title="2. mysql数据库自增ID"></a>2. mysql数据库自增ID</h4><ul><li><p><strong>示例</strong><br>创建名为uuid的表，结构如下<br>|id|field|<br>|:-:|:-:|<br>|1|a|<br>|PK|char(1)|<br>然后每次获取id:</p><pre><code class="sql">REPLACE INTO uuid (field) VALUES (&#39;a&#39;);select LAST_INSERT_ID();</code></pre><p>当然，为了提高性能，体现分布式的优势，我们可以采用分库的方式，使用proxy请求不同的分库，如图<br><img src="http://5b0988e595225.cdn.sohucs.com/images/20180518/2ac0cbcc884b487391f412a08020ab7d.png" alt="proxy分库生成uuid"><br>这样一来，DB1生成的ID是1,4,7,10,13….，DB2生成的ID是2,5,8,11,14…..</p></li><li><p><strong>缺点</strong><br>ID生成严重依赖mysql，每次生成都需要请求mysql，在高并发环境下，性能不是很好，如果数据库挂掉，会影响业务</p></li></ul><h3 id="2-引玉"><a href="#2-引玉" class="headerlink" title="2 引玉"></a>2 <strong>引玉</strong></h3><h4 id="1-Twitter的SnowFlake-雪花算法"><a href="#1-Twitter的SnowFlake-雪花算法" class="headerlink" title="1. Twitter的SnowFlake 雪花算法"></a>1. Twitter的SnowFlake 雪花算法</h4><ul><li><strong>概述</strong><br><img src="http://5b0988e595225.cdn.sohucs.com/images/20180518/1af4eb1ec81d4501a757cfdc9ada72d1.jpeg" alt="snowflake data structure"></li></ul><p><code>1位</code>，不用。二进制中最高位为1的都是负数，但是我们生成的id一般都使用整数，所以这个最高位固定是0<br>用来记录时间戳（毫秒）。</p><p><code>41位</code>，用来记录时间戳（毫秒）。</p><ul><li style="list-style: none"><input type="checkbox" checked> 可以表示$2^{41}−1$个数字，</li><li style="list-style: none"><input type="checkbox" checked> 如果只用来表示正整数（计算机中正数包含0），可以表示的数值范围是：0 至 241−1，减1是因为可表示的数值范围是从0开始算的，而不是1。</li><li style="list-style: none"><input type="checkbox" checked> 也就是说41位可以表示241−1个毫秒的值，转化成单位年则是(241−1)/(1000∗60∗60∗24∗365)=69年<br>10位，用来记录工作机器id。<br>可以部署在210=1024个节点，包括5位datacenterId和5位workerId<br>5位（bit）可以表示的最大正整数是$2^5−1=31$，即可以用0、1、2、3、….31这32个数字，来表示不同的datecenterId或workerId<br>12位，序列号，用来记录同毫秒内产生的不同id。<br>12位（bit）可以表示的最大正整数是$2^{12}−1=4095$，即可以用0、1、2、3、….4094这4095个数字，来表示同一机器同一时间截（毫秒)内产生的4095个ID序号</li></ul><p><code>10位</code>，用来记录工作机器id。</p><ul><li style="list-style: none"><input type="checkbox" checked> 可以部署在$2^{10}=1024$个节点，包括5位<code>datacenterId</code>和5位<code>workerId</code></li><li><p>[x] 5位（bit）可以表示的最大正整数是$2^5−1=31$，即可以用0、1、2、3、….31这32个数字，来表示不同的datecenterId或workerId<br><code>12位</code>，序列号，用来记录同毫秒内产生的不同id。</p></li><li><p>[x] 12位（bit）可以表示的最大正整数是$2^{12}−1=4095$，即可以用0、1、2、3、….4094这4095个数字，来表示同一机器同一时间戳（毫秒)内产生的4095个ID序号</p></li></ul><ul><li><strong>SHOW THE CODE</strong><br>…</li><li><strong>解惑</strong><pre><code>// 时间戳差值导致ID位数变化double v = Math.pow(10, 17);long val = new Double(v).longValue();long year =1000 * 60 * 60 * 24 * 365L;System.out.println((double)(val &gt;&gt; 22) / year);</code></pre></li></ul><h4 id="2-Redis生成自增"><a href="#2-Redis生成自增" class="headerlink" title="2. Redis生成自增"></a>2. Redis生成自增</h4>]]></content>
+      
+      <categories>
+          
+          <category> 谈技论术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> middle-ware </tag>
+            
+            <tag> distribution </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>搭建Blog拾遗及相关资料归档</title>
       <link href="/posts/tech-talker/pin/"/>
       <url>/posts/tech-talker/pin/</url>
