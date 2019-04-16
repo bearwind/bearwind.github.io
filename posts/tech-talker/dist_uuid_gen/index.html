@@ -265,7 +265,7 @@
 
     
         <meta property="article:published_time" content="Sat Aug 25 2018 10:12:00 GMT+0800">
-        <meta property="article:modified_time" content="Tue Apr 16 2019 11:45:31 GMT+0800">
+        <meta property="article:modified_time" content="Tue Apr 16 2019 11:56:04 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -288,7 +288,7 @@
     "mainEntityOfPage": "http://bearwind.me/posts/tech-talker/dist_uuid_gen/index.html",
     "headline": "分布式环境下的UUID生成策略",
     "datePublished": "Sat Aug 25 2018 10:12:00 GMT+0800",
-    "dateModified": "Tue Apr 16 2019 11:45:31 GMT+0800",
+    "dateModified": "Tue Apr 16 2019 11:56:04 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "NovaWind",
@@ -570,20 +570,21 @@ select LAST_INSERT_ID();
 <h3 id="2-引玉"><a href="#2-引玉" class="headerlink" title="2 引玉"></a>2 <strong>引玉</strong></h3><h4 id="1-Twitter的SnowFlake-雪花算法"><a href="#1-Twitter的SnowFlake-雪花算法" class="headerlink" title="1. Twitter的SnowFlake 雪花算法"></a>1. Twitter的SnowFlake 雪花算法</h4><ul>
 <li><strong>概述</strong><br><img src="http://5b0988e595225.cdn.sohucs.com/images/20180518/1af4eb1ec81d4501a757cfdc9ada72d1.jpeg" alt="snowflake data structure"></li>
 </ul>
-<p><code>1位</code>，不用。二进制中最高位为1的都是负数，但是我们生成的id一般都使用整数，所以这个最高位固定是0<br>用来记录时间戳（毫秒）。</p>
+<p><code>1位</code>，不用。二进制中最高位为1的都是负数，但是我们生成的id一般都使用整数，所以这个最高位固定是0用来记录时间戳（毫秒）。</p>
 <p><code>41位</code>，用来记录时间戳（毫秒）。</p>
 <ul>
-<li style="list-style: none"><input type="checkbox" checked> 可以表示$2^{41}−1$个数字，</li>
+<li style="list-style: none"><input type="checkbox" checked> 可以表示2^41−1个数字，</li>
 <li style="list-style: none"><input type="checkbox" checked> 如果只用来表示正整数（计算机中正数包含0），可以表示的数值范围是：0 至 241−1，减1是因为可表示的数值范围是从0开始算的，而不是1。</li>
-<li style="list-style: none"><input type="checkbox" checked> 也就是说41位可以表示241−1个毫秒的值，转化成单位年则是(241−1)/(1000∗60∗60∗24∗365)=69年<br>10位，用来记录工作机器id。<br>可以部署在210=1024个节点，包括5位datacenterId和5位workerId<br>5位（bit）可以表示的最大正整数是$2^5−1=31$，即可以用0、1、2、3、….31这32个数字，来表示不同的datecenterId或workerId<br>12位，序列号，用来记录同毫秒内产生的不同id。<br>12位（bit）可以表示的最大正整数是$2^{12}−1=4095$，即可以用0、1、2、3、….4094这4095个数字，来表示同一机器同一时间截（毫秒)内产生的4095个ID序号</li>
+<li style="list-style: none"><input type="checkbox" checked> 也就是说41位可以表示241−1个毫秒的值，转化成单位年则是(241−1)/(1000∗60∗60∗24∗365)=69年<br>10位，用来记录工作机器id。<br>可以部署在210=1024个节点，包括5位datacenterId和5位workerId<br>5位（bit）可以表示的最大正整数是2^5−1=31$，即可以用0、1、2、3、….31这32个数字，来表示不同的datecenterId或workerId<br>12位，序列号，用来记录同毫秒内产生的不同id。<br>12位（bit）可以表示的最大正整数是2^12−1=4095，即可以用0、1、2、3、….4094这4095个数字，来表示同一机器同一时间截（毫秒)内产生的4095个ID序号</li>
 </ul>
 <p><code>10位</code>，用来记录工作机器id。</p>
 <ul>
-<li style="list-style: none"><input type="checkbox" checked> 可以部署在$2^{10}=1024$个节点，包括5位<code>datacenterId</code>和5位<code>workerId</code></li>
-<li><p>[x] 5位（bit）可以表示的最大正整数是$2^5−1=31$，即可以用0、1、2、3、….31这32个数字，来表示不同的datecenterId或workerId<br><code>12位</code>，序列号，用来记录同毫秒内产生的不同id。</p>
-</li>
-<li><p>[x] 12位（bit）可以表示的最大正整数是$2^{12}−1=4095$，即可以用0、1、2、3、….4094这4095个数字，来表示同一机器同一时间戳（毫秒)内产生的4095个ID序号</p>
-</li>
+<li style="list-style: none"><input type="checkbox" checked> 可以部署在2^10=1024个节点，包括5位<code>datacenterId</code>和5位<code>workerId</code></li>
+<li style="list-style: none"><input type="checkbox" checked> 5位（bit）可以表示的最大正整数是$2^5−1=31$，即可以用0、1、2、3、….31这32个数字，来表示不同的datecenterId或workerId</li>
+</ul>
+<p><code>12位</code>，序列号，用来记录同毫秒内产生的不同id。</p>
+<ul>
+<li style="list-style: none"><input type="checkbox" checked> 12位（bit）可以表示的最大正整数是$2^{12}−1=4095$，即可以用0、1、2、3、….4094这4095个数字，来表示同一机器同一时间戳（毫秒)内产生的4095个ID序号</li>
 </ul>
 <ul>
 <li><strong>SHOW THE CODE</strong><br>…</li>
