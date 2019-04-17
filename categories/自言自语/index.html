@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html style="display: none;" lang="zh">
-    <head>
+    <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
     <!--
         © Material Theme
         https://github.com/viosey/hexo-theme-material
-        Version: 1.5.2 -->
+        Version: 1.5.6 -->
     <script>
-        window.materialVersion = "1.5.2"
+        window.materialVersion = "1.5.6"
         // Delete localstorage with these tags
         window.oldVersion = [
             'codestartv1',
             '1.3.4',
             '1.4.0',
             '1.4.0b1',
-            '1.5.0'
+            '1.5.0',
+            '1.5.2',
+            '1.5.5'
         ]
     </script>
 
@@ -23,7 +25,7 @@
 
 
 
-    <link rel="dns-prefetch" href="https://busuanzi.ibruce.info"/>
+    <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
 
 
 
@@ -31,6 +33,7 @@
 
 
 
+    <link rel="dns-prefetch" href="https://lib.baomitu.com">
 
 
 
@@ -45,7 +48,7 @@
     
     <title>
         
-            分布式环境下的UUID生成策略 | 
+            分类: 自言自语 | 
         
         It&#39;s me, Bear &amp; Wind.
     </title>
@@ -54,14 +57,14 @@
     <link rel="icon shortcut" type="image/ico" href="/img/favicon.ico">
     <link rel="icon" href="/img/favicon.png">
 
-    <meta name="format-detection" content="telephone=no"/>
-    <meta name="description" itemprop="description" content="NovaWind的个人博客">
-    <meta name="keywords" content="bear, nova, wind, 熊风, java,java,middle-ware,distribution">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" itemprop="description" content>
+    <meta name="keywords" content="bear, nova, wind, 熊风, java">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
-    <meta http-equiv="Cache-Control" content="no-transform" />
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
 
     <!--[if lte IE 9]>
         <link rel="stylesheet" href="/css/ie-blocker.css">
@@ -80,12 +83,9 @@
     <!-- Import CSS -->
     
         <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?NKhlKQkXw/c66TR5p4wO+w==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
-            
-                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/tranquil-heart.min.css?ul3p9I9MsbOxK0L+BHzDDg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
             
         
 
@@ -241,7 +241,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="It&#39;s me, Bear &amp; Wind.">
-    <meta name="msapplication-starturl" content="http://bearwind.me/posts/tech-talker/dist_uuid_gen/">
+    <meta name="msapplication-starturl" content="http://bearwind.me/categories/自言自语/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="It&#39;s me, Bear &amp; Wind.">
@@ -256,16 +256,13 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="http://bearwind.me/posts/tech-talker/dist_uuid_gen/">
+    <meta property="og:url" content="http://bearwind.me/categories/自言自语/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="分布式环境下的UUID生成策略 | It&#39;s me, Bear &amp; Wind.">
+    <meta property="og:title" content="分类: 自言自语 | It&#39;s me, Bear &amp; Wind.">
     <meta property="og:image" content="/img/favicon.png">
-    <meta property="og:description" content="NovaWind的个人博客">
-    <meta property="og:article:tag" content="java"> <meta property="og:article:tag" content="middle-ware"> <meta property="og:article:tag" content="distribution"> 
-
+    <meta property="og:description" content>
     
-        <meta property="article:published_time" content="Sat Aug 25 2018 10:12:00 GMT+0800">
-        <meta property="article:modified_time" content="Tue Apr 16 2019 11:56:04 GMT+0800">
+
     
 
     <!-- The Twitter Card protocol -->
@@ -273,43 +270,13 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://bearwind.me/posts/tech-talker/dist_uuid_gen/index.html" />
+        <link rel="canonical" href="http://bearwind.me/categories/自言自语/index.html">
     
 
     <!-- Structured-data for SEO -->
     
         
 
-
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "mainEntityOfPage": "http://bearwind.me/posts/tech-talker/dist_uuid_gen/index.html",
-    "headline": "分布式环境下的UUID生成策略",
-    "datePublished": "Sat Aug 25 2018 10:12:00 GMT+0800",
-    "dateModified": "Tue Apr 16 2019 11:56:04 GMT+0800",
-    "author": {
-        "@type": "Person",
-        "name": "NovaWind",
-        "image": {
-            "@type": "ImageObject",
-            "url": "/img/avatar.png"
-        },
-        "description": "<span style='font-style:italic;font-weight:bolder;'>Nova, born to shine!</span>,<span style='font-style:italic;font-weight:bolder;'>Wind, born to blow!</span>"
-    },
-    "publisher": {
-        "@type": "Organization",
-        "name": "It&#39;s me, Bear &amp; Wind.",
-        "logo": {
-            "@type":"ImageObject",
-            "url": "/img/favicon.png"
-        }
-    },
-    "keywords": ",java,middle-ware,distributionbear, nova, wind, 熊风, java",
-    "description": "NovaWind的个人博客",
-}
-</script>
 
 
     
@@ -339,311 +306,107 @@
                     
                         <!-- Hamburger Button -->
                         <button class="MD-burger-icon sidebar-toggle">
-                            <span class="MD-burger-layer"></span>
+                            <span id="MD-burger-id" class="MD-burger-layer"></span>
                         </button>
                     
 
-                    <!-- Post TOC -->
-
+                    <!-- Index Module -->
+<div class="material-index mdl-grid">
     
-    <!-- Back Button -->
-    <!--
-    <div class="material-back" id="backhome-div" tabindex="0">
-        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
-           href="#" onclick="window.history.back();return false;"
-           target="_self"
-           role="button"
-           data-upgraded=",MaterialButton,MaterialRipple">
-            <i class="material-icons" role="presentation">arrow_back</i>
-            <span class="mdl-button__ripple-container">
-                <span class="mdl-ripple"></span>
-            </span>
-        </a>
-    </div>
-    -->
+    <div class="locate-thumbnail-symbol"></div>
 
-
-    <!-- Left aligned menu below button -->
+    <!-- Pin on top -->
     
-    
-    <button id="post-toc-trigger-btn"
-        class="mdl-button mdl-js-button mdl-button--icon">
-        <i class="material-icons">format_list_numbered</i>
-    </button>
-
-    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0-前言"><span class="post-toc-text">0 前言</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-抛砖"><span class="post-toc-text">1 抛砖</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-java原生UUID生成方式"><span class="post-toc-text">1. java原生UUID生成方式</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-mysql数据库自增ID"><span class="post-toc-text">2. mysql数据库自增ID</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-引玉"><span class="post-toc-text">2 引玉</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-Twitter的SnowFlake-雪花算法"><span class="post-toc-text">1. Twitter的SnowFlake 雪花算法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-Redis生成自增"><span class="post-toc-text">2. Redis生成自增</span></a></li></ol></li></ol>
-    </ul>
-    
-
-
-
-
-<!-- Layouts -->
-
-    <!-- Post Module -->
-    <div class="material-post_container">
-
-        <div class="material-post mdl-grid">
-            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
-
-                <!-- Post Header(Thumbnail & Title) -->
+        
+            
                 
-    <!-- Paradox Post Header -->
+                    <!-- Paradox Thumbnail -->
+                    <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
+    <!-- Post Thumbnail -->
     
         
             <!-- Random Thumbnail -->
             <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-            <script type="text/ls-javascript" id="post-thumbnail-script">
-    var randomNum = Math.floor(Math.random() * 19 + 1);
+        
+    
 
-    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+        <!-- Post Title -->
+        <p class="article-headline-p"><a href="/自言自语/origin"><span>[Top]</span>诞生</a></p>
+    </div>
+
+    <!-- Post Excerpt -->
+    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
+        
+            前言
+有时候，遥望星空，你可能会惊...
+        
+        &nbsp;&nbsp;&nbsp;
+        <span>
+            <a href="/自言自语/origin" target="_self">阅读全文</a>
+        </span>
+    </div>
+    <!-- Post_entry Info-->
+    <div id="post_entry-info">
+        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
+            <!-- Author Avatar -->
+            <div id="author-avatar">
+                <img src="/img/avatar.png" width="44px" height="44px" alt="NovaWind's avatar">
+            </div>
+            <div>
+                <strong>NovaWind</strong>
+                <span>5月 29, 2018</span>
+            </div>
+        </div>
+        <div id="post_entry-right-info">
+          
+              <!-- Category -->
+              <span class="post_entry-category">
+                  <a class="post_category-link" href="/categories/自言自语/">自言自语</a>
+              </span>
+            
+
+            
+
+            
+
+            <!-- Post Views -->
+            <span class="post_entry-views">
+            </span>
+        </div>
+    </div>
+</div>
+
+                
+                
+            
+        
+    
+
+    <!-- Normal Post -->
+    
+        
+    
+
+    
+
+    
+        <script type="text/ls-javascript" id="thumbnail-script">
+    var randomNum;
+
+    var locatePost = $('.locate-thumbnail-symbol').next();
+    for(var i = 0; i < 10; i++) {
+        randomNum = Math.floor(Math.random() * 19 + 1);
+
+        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
+        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
     $('.post_thumbnail-random').addClass('lazy');
+
+        locatePost = locatePost.next();
+    }
 </script>
 
-        
-    
-            <p class="article-headline-p">
-                分布式环境下的UUID生成策略
-            </p>
-        </div>
-
-
-
-
-
-                
-                    <!-- Paradox Post Info -->
-                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
-
-    <!-- Author Avatar -->
-    <div id="author-avatar">
-        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
-    </div>
-    <!-- Author Name & Date -->
-    <div>
-        <strong>NovaWind</strong>
-        <span>8月 25, 2018</span>
-    </div>
-
-    <div class="section-spacer"></div>
-
-    <!-- Favorite -->
-    <!--
-        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
-            <i class="material-icons" role="presentation">favorite</i>
-            <span class="visuallyhidden">favorites</span>
-        </button>
-    -->
-
-    <!-- Qrcode -->
-    
-        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-    <i class="material-icons" role="presentation">devices other</i>
-    <span class="visuallyhidden">devices other</span>
-</button>
-<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
-    <li class="mdl-menu__item">在其它设备中阅读本文章</li>
-    
-        <img src="https://pan.baidu.com/share/qrcode?w=246&h=246&url=http://bearwind.me/posts/tech-talker/dist_uuid_gen/">
-    
-</ul>
-
-    
-
-    <!-- Tags (bookmark) -->
-    
-    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-        <i class="material-icons" role="presentation">bookmark</i>
-        <span class="visuallyhidden">bookmark</span>
-    </button>
-    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
-        <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/distribution/">distribution</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/java/">java</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/middle-ware/">middle-ware</a>
-    </ul>
-    
-
-    <!-- Share -->
-    
-        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-    <i class="material-icons" role="presentation">share</i>
-    <span class="visuallyhidden">share</span>
-</button>
-<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
-    
-
-    
-        
-            <!-- Busuanzi Views -->
-            <a class="post_share-link" href="#">
-                <li class="mdl-menu__item">
-                    <span id="busuanzi_container_page_pv">
-                        <span id="busuanzi_value_page_pv"></span>&nbsp;浏览量
-                    </span>
-                </li>
-            </a>
-        
-    
-
-    <!-- Share Weibo -->
-    
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=分布式环境下的UUID生成策略&url=http://bearwind.me/posts/tech-talker/dist_uuid_gen/index.html&pic=http://bearwind.me/img/favicon.ico&searchPic=false&style=simple" target="_blank">
-            <li class="mdl-menu__item">
-                分享到微博
-            </li>
-        </a>
-    
-
-    <!-- Share Twitter -->
-    
-
-    <!-- Share Facebook -->
-    
-
-    <!-- Share Google+ -->
-    
-
-    <!-- Share LinkedIn -->
-    
-
-    <!-- Share QQ -->
-    
-
-    <!-- Share Telegram -->
-    
-</ul>
-
     
 </div>
-
-                
-
-                <!-- Post Content -->
-                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
-    
-        <h3 id="0-前言"><a href="#0-前言" class="headerlink" title="0 前言"></a>0 <strong>前言</strong></h3><blockquote>
-<p>UUID(Universally Unique Identifier), 通用唯一识别码， 其产生的目的就是为了在分布式的大环境下让每一个独立的有意义的元素都有其唯一的身份识别码，如同我们的身份证号一样。</p>
-</blockquote>
-<h3 id="1-抛砖"><a href="#1-抛砖" class="headerlink" title="1 抛砖"></a>1 <strong>抛砖</strong></h3><h4 id="1-java原生UUID生成方式"><a href="#1-java原生UUID生成方式" class="headerlink" title="1. java原生UUID生成方式"></a>1. java原生UUID生成方式</h4><ul>
-<li><strong>示例</strong><pre><code class="java">String uuid = UUID.randomUUID().toString();
-System.out.println(uuid);
-//output: 52f3a858-cd2d-4994-b4f1-9a06839deb45
-</code></pre>
-</li>
-<li><strong>缺点</strong></li>
-</ul>
-<ol>
-<li>UUID随机生成长度为36位的字符串，太长，占用空间较大，就算去掉<code>-</code>，还是很长</li>
-<li>丑陋，反人类的识别度</li>
-<li>无序，若排序几无可能</li>
-<li>索引效率特别低，入库性能差</li>
-</ol>
-<h4 id="2-mysql数据库自增ID"><a href="#2-mysql数据库自增ID" class="headerlink" title="2. mysql数据库自增ID"></a>2. mysql数据库自增ID</h4><ul>
-<li><strong>示例</strong><br>创建名为uuid的表，结构如下</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">id</th>
-<th style="text-align:center">field</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">1</td>
-<td style="text-align:center">a</td>
-</tr>
-<tr>
-<td style="text-align:center">PK</td>
-<td style="text-align:center">char(1)</td>
-</tr>
-</tbody>
-</table>
-<p>然后每次获取id:</p>
-<pre><code class="sql">REPLACE INTO uuid (field) VALUES (&#39;a&#39;);
-select LAST_INSERT_ID();
-</code></pre>
-<p>当然，为了提高性能，体现分布式的优势，我们可以采用分库的方式，使用proxy请求不同的分库，如图<br><img src="http://5b0988e595225.cdn.sohucs.com/images/20180518/2ac0cbcc884b487391f412a08020ab7d.png" alt="proxy分库生成uuid"><br>这样一来，DB1生成的ID是1,4,7,10,13….，DB2生成的ID是2,5,8,11,14…..</p>
-<ul>
-<li><strong>缺点</strong><br>ID生成严重依赖mysql，每次生成都需要请求mysql，在高并发环境下，性能不是很好，如果数据库挂掉，会影响业务</li>
-</ul>
-<h3 id="2-引玉"><a href="#2-引玉" class="headerlink" title="2 引玉"></a>2 <strong>引玉</strong></h3><h4 id="1-Twitter的SnowFlake-雪花算法"><a href="#1-Twitter的SnowFlake-雪花算法" class="headerlink" title="1. Twitter的SnowFlake 雪花算法"></a>1. Twitter的SnowFlake 雪花算法</h4><ul>
-<li><strong>概述</strong><br><img src="http://5b0988e595225.cdn.sohucs.com/images/20180518/1af4eb1ec81d4501a757cfdc9ada72d1.jpeg" alt="snowflake data structure"></li>
-</ul>
-<p><code>1位</code>，不用。二进制中最高位为1的都是负数，但是我们生成的id一般都使用整数，所以这个最高位固定是0用来记录时间戳（毫秒）。</p>
-<p><code>41位</code>，用来记录时间戳（毫秒）。</p>
-<ul>
-<li style="list-style: none"><input type="checkbox" checked> 可以表示2^41−1个数字，</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果只用来表示正整数（计算机中正数包含0），可以表示的数值范围是：0 至 241−1，减1是因为可表示的数值范围是从0开始算的，而不是1。</li>
-<li style="list-style: none"><input type="checkbox" checked> 也就是说41位可以表示241−1个毫秒的值，转化成单位年则是(241−1)/(1000∗60∗60∗24∗365)=69年<br>10位，用来记录工作机器id。<br>可以部署在210=1024个节点，包括5位datacenterId和5位workerId<br>5位（bit）可以表示的最大正整数是2^5−1=31$，即可以用0、1、2、3、….31这32个数字，来表示不同的datecenterId或workerId<br>12位，序列号，用来记录同毫秒内产生的不同id。<br>12位（bit）可以表示的最大正整数是2^12−1=4095，即可以用0、1、2、3、….4094这4095个数字，来表示同一机器同一时间截（毫秒)内产生的4095个ID序号</li>
-</ul>
-<p><code>10位</code>，用来记录工作机器id。</p>
-<ul>
-<li style="list-style: none"><input type="checkbox" checked> 可以部署在2^10=1024个节点，包括5位<code>datacenterId</code>和5位<code>workerId</code></li>
-<li style="list-style: none"><input type="checkbox" checked> 5位（bit）可以表示的最大正整数是$2^5−1=31$，即可以用0、1、2、3、….31这32个数字，来表示不同的datecenterId或workerId</li>
-</ul>
-<p><code>12位</code>，序列号，用来记录同毫秒内产生的不同id。</p>
-<ul>
-<li style="list-style: none"><input type="checkbox" checked> 12位（bit）可以表示的最大正整数是$2^{12}−1=4095$，即可以用0、1、2、3、….4094这4095个数字，来表示同一机器同一时间戳（毫秒)内产生的4095个ID序号</li>
-</ul>
-<ul>
-<li><strong>SHOW THE CODE</strong><br>…</li>
-<li><strong>解惑</strong><pre><code>// 时间戳差值导致ID位数变化
-double v = Math.pow(10, 17);
-long val = new Double(v).longValue();
-long year =1000 * 60 * 60 * 24 * 365L;
-System.out.println((double)(val &gt;&gt; 22) / year);
-</code></pre></li>
-</ul>
-<h4 id="2-Redis生成自增"><a href="#2-Redis生成自增" class="headerlink" title="2. Redis生成自增"></a>2. Redis生成自增</h4>
-        
-                <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
-                    <p><strong>
-                         
-                            Created by NovaWind.
-                        </strong>
-                        <br>
-                        <strong>本文链接：</strong><a href="http://bearwind.me/posts/tech-talker/dist_uuid_gen/">http://bearwind.me/posts/tech-talker/dist_uuid_gen/</a>
-                    </p>
-                </blockquote>
-        
-    
-
-    
-</div>
-
-
-                
-
-                <!-- Post Comments -->
-                
-                    
-                
-            </div>
-
-            <!-- Post Prev & Next Nav -->
-            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
-    <!-- Prev Nav -->
-    
-
-    <!-- Section Spacer -->
-    <div class="section-spacer"></div>
-
-    <!-- Next Nav -->
-    
-        <a href="/posts/tech-talker/pin/" id="post_nav-older" class="next-content">
-            旧篇
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_forward</i>
-            </button>
-        </a>
-    
-</nav>
-
-        </div>
-    </div>
-
 
 
                     
@@ -725,8 +488,8 @@ System.out.println((double)(val &gt;&gt; 22) / year);
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2018/08/">八月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/05/">五月 2018<span class="sidebar_archives-count">2</span></a>
-            </ul>
+                <a class="sidebar_archives-link" href="/archives/2018/08/">八月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/06/">六月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/05/">五月 2018<span class="sidebar_archives-count">2</span></a>
+            </li></ul>
         </li>
         
             <li class="divider"></li>
@@ -745,8 +508,8 @@ System.out.println((double)(val &gt;&gt; 22) / year);
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/self-whisper/">自言自语<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/tech-talker/">谈技论术<span class="sidebar_archives-count">2</span></a>
-            </ul>
+                <a class="sidebar_archives-link" href="/categories/自言自语/">自言自语<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/谈技论术/">谈技论术<span class="sidebar_archives-count">3</span></a>
+            </li></ul>
         </li>
         
             <li class="divider"></li>
@@ -803,7 +566,7 @@ System.out.println((double)(val &gt;&gt; 22) / year);
         <li>
             <a href="/archives">
                 文章总数
-                <span class="sidebar-badge">3</span>
+                <span class="sidebar-badge">4</span>
             </a>
         </li>
         
@@ -927,15 +690,18 @@ It will not impact the appearance and can give developers a lot of support :)
 
     <!-- Telegram -->
     
-    
+
     <!-- V2EX -->
+    
+
+    <!-- Segmentfault -->
     
 </div>
 
 
         <!--Copyright-->
         <div id="copyright">
-            Copyright&nbsp;©&nbsp;2018&nbsp;-<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>It's me, Bear & Wind.
+            Copyright&nbsp;©&nbsp;<span year></span>&nbsp;It's me, Bear & Wind.
             
                 <br>
                 
@@ -970,7 +736,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 
-    <script>lsloader.load("js_js","/js/js.min.js?V/53wGualMuiPM3xoetD5Q==", true)</script>
+    <script>lsloader.load("js_js","/js/js.min.js?Bn9UzEm8RrBSxqyZB0zPjA==", true)</script>
 
 
 
@@ -1025,10 +791,6 @@ It will not impact the appearance and can give developers a lot of support :)
 <!-- Import prettify js  -->
 
     
-        
-            <script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==", true)</script>
-        
-    
 
 
 
@@ -1041,11 +803,6 @@ It will not impact the appearance and can give developers a lot of support :)
     });
 
     
-        
-            $(function() {
-                $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
-                prettyPrint();
-                })
         
     
     
@@ -1078,6 +835,16 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 <script>
+    var copyrightNow = new Date().getFullYear();
+    var textContent = document.querySelector('span[year]')
+
+    copyrightSince = 2018;
+    if (copyrightSince === copyrightNow||copyrightSince === 0000) {
+        textContent.textContent = copyrightNow
+    } else {
+        textContent.textContent = copyrightSince + ' - ' + copyrightNow
+    }
+
     (function(){
         var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
 
@@ -1086,7 +853,7 @@ It will not impact the appearance and can give developers a lot of support :)
             lsloader.runInlineScript(item.id,item.id);
         }
     })()
-console.log('\n %c © Material Theme | Version: 1.5.2 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+console.log('\n %c © Material Theme | Version: 1.5.6 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
 </script>
 
                 </main>
