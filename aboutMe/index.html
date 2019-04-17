@@ -456,14 +456,23 @@
 <blockquote>
 <p>contact  </p>
 <ul>
-<li>phone:<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">   <span class="comment">//just already mentioned...</span></span><br><span class="line">	Integer[] secretCode = <span class="keyword">new</span> Integer[]&#123;?, ?, ?, ?&#125;;</span><br><span class="line">	Integer[] numbers = &#123;<span class="number">6</span>, <span class="number">3</span>, <span class="number">8</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">9</span>, <span class="number">1</span>&#125;;</span><br><span class="line">	StringBuilder asterisks = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">	<span class="keyword">for</span>(Integer code : secretCode)&#123;</span><br><span class="line">		asterisks.append(numbers[code]);</span><br><span class="line">	&#125;</span><br><span class="line">	String phone = <span class="string">"185"</span> + asterisks + <span class="string">"5866"</span>;</span><br><span class="line">	System.out.println(phone);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>phone:<pre><code class="java">public static void main(String[] args) {
+  //just already mentioned...
+      Integer[] secretCode = new Integer[]{?, ?, ?, ?};
+      Integer[] numbers = {6, 3, 8, 5, 4, 2, 7, 0, 9, 1};
+      StringBuilder asterisks = new StringBuilder();
+      for(Integer code : secretCode){
+          asterisks.append(numbers[code]);
+      }
+      String phone = &quot;185&quot; + asterisks + &quot;5866&quot;;
+      System.out.println(phone);
+  }
+</code></pre>
 </li>
-</ul>
-</blockquote>
-<ul>
 <li>location: Pudong new District, Shanghai</li>
 <li>github: <a href="https://github.com/bearwind/" target="_blank" rel="noopener">Click Me</a></li>
 </ul>
+</blockquote>
 
         
                 <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
@@ -606,7 +615,7 @@
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/自言自语/">自言自语<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/谈技论术/">谈技论术<span class="sidebar_archives-count">3</span></a>
+                <a class="sidebar_archives-link" href="/categories/self-whisper/">自言自语<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/tech-talker/">谈技论术<span class="sidebar_archives-count">3</span></a>
             </li></ul>
         </li>
         

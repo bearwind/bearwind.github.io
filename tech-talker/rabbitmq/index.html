@@ -48,7 +48,7 @@
     
     <title>
         
-            分布式环境下的UUID生成策略 | 
+            RabbitMq相关 | 
         
         It&#39;s me, Bear &amp; Wind.
     </title>
@@ -59,7 +59,7 @@
 
     <meta name="format-detection" content="telephone=no">
     <meta name="description" itemprop="description" content>
-    <meta name="keywords" content="bear, nova, wind, 熊风, java,java,middle-ware,distribution">
+    <meta name="keywords" content="bear, nova, wind, 熊风, java,java,middle-ware">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -88,7 +88,7 @@
         
             
                 <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/tranquil-heart.min.css?ul3p9I9MsbOxK0L+BHzDDg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/tomorrow-night.min.css?QlnGZk/a4+d8XbwtXBDPiA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
             
         
 
@@ -244,7 +244,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="It&#39;s me, Bear &amp; Wind.">
-    <meta name="msapplication-starturl" content="http://bearwind.me/谈技论术/dist_uuid_gen/">
+    <meta name="msapplication-starturl" content="http://bearwind.me/tech-talker/rabbitmq/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="It&#39;s me, Bear &amp; Wind.">
@@ -259,16 +259,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="http://bearwind.me/谈技论术/dist_uuid_gen/">
+    <meta property="og:url" content="http://bearwind.me/tech-talker/rabbitmq/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="分布式环境下的UUID生成策略 | It&#39;s me, Bear &amp; Wind.">
+    <meta property="og:title" content="RabbitMq相关 | It&#39;s me, Bear &amp; Wind.">
     <meta property="og:image" content="/img/favicon.png">
     <meta property="og:description" content>
-    <meta property="og:article:tag" content="java"> <meta property="og:article:tag" content="middle-ware"> <meta property="og:article:tag" content="distribution"> 
+    <meta property="og:article:tag" content="java"> <meta property="og:article:tag" content="middle-ware"> 
 
     
-        <meta property="article:published_time" content="Sat Aug 25 2018 10:12:00 GMT+0800">
-        <meta property="article:modified_time" content="Tue Apr 16 2019 11:56:04 GMT+0800">
+        <meta property="article:published_time" content="Thu Jun 21 2018 13:25:00 GMT+0800">
+        <meta property="article:modified_time" content="Tue Apr 16 2019 17:08:32 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -276,7 +276,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://bearwind.me/谈技论术/dist_uuid_gen/index.html">
+        <link rel="canonical" href="http://bearwind.me/tech-talker/rabbitmq/index.html">
     
 
     <!-- Structured-data for SEO -->
@@ -288,10 +288,10 @@
 {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "mainEntityOfPage": "http://bearwind.me/谈技论术/dist_uuid_gen/index.html",
-    "headline": "分布式环境下的UUID生成策略",
-    "datePublished": "Sat Aug 25 2018 10:12:00 GMT+0800",
-    "dateModified": "Tue Apr 16 2019 11:56:04 GMT+0800",
+    "mainEntityOfPage": "http://bearwind.me/tech-talker/rabbitmq/index.html",
+    "headline": "RabbitMq相关",
+    "datePublished": "Thu Jun 21 2018 13:25:00 GMT+0800",
+    "dateModified": "Tue Apr 16 2019 17:08:32 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "NovaWind",
@@ -309,7 +309,7 @@
             "url": "/img/favicon.png"
         }
     },
-    "keywords": ",java,middle-ware,distributionbear, nova, wind, 熊风, java",
+    "keywords": ",java,middle-warebear, nova, wind, 熊风, java",
     "description": "",
 }
 </script>
@@ -374,7 +374,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0-前言"><span class="post-toc-text">0 前言</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-抛砖"><span class="post-toc-text">1 抛砖</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-java原生UUID生成方式"><span class="post-toc-text">1. java原生UUID生成方式</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-mysql数据库自增ID"><span class="post-toc-text">2. mysql数据库自增ID</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-引玉"><span class="post-toc-text">2 引玉</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-Twitter的SnowFlake-雪花算法"><span class="post-toc-text">1. Twitter的SnowFlake 雪花算法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-Redis生成自增"><span class="post-toc-text">2. Redis生成自增</span></a></li></ol></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#基本组成"><span class="post-toc-text">基本组成</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#RabbitMqConfig"><span class="post-toc-text">RabbitMqConfig</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#延迟队列-delayed-queue"><span class="post-toc-text">延迟队列 delayed queue</span></a></li></ol>
     </ul>
     
 
@@ -406,7 +406,7 @@
         
     
             <p class="article-headline-p">
-                分布式环境下的UUID生成策略
+                RabbitMq相关
             </p>
         </div>
 
@@ -425,7 +425,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>NovaWind</strong>
-        <span>8月 25, 2018</span>
+        <span>6月 21, 2018</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -447,7 +447,7 @@
 <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
     <li class="mdl-menu__item">在其它设备中阅读本文章</li>
     
-        <img src="https://pan.baidu.com/share/qrcode?w=246&h=246&url=http://bearwind.me/谈技论术/dist_uuid_gen/">
+        <img src="https://pan.baidu.com/share/qrcode?w=246&h=246&url=http://bearwind.me/tech-talker/rabbitmq/">
     
 </ul>
 
@@ -461,7 +461,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/distribution/">distribution</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/java/">java</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/middle-ware/">middle-ware</a>
+        <a class="post_tag-link" href="/tags/java/">java</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/middle-ware/">middle-ware</a>
     </li></ul>
     
 
@@ -489,7 +489,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=分布式环境下的UUID生成策略&url=http://bearwind.me/谈技论术/dist_uuid_gen/index.html&pic=http://bearwind.me/img/favicon.ico&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=RabbitMq相关&url=http://bearwind.me/tech-talker/rabbitmq/index.html&pic=http://bearwind.me/img/favicon.ico&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -523,73 +523,98 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h3 id="0-前言"><a href="#0-前言" class="headerlink" title="0 前言"></a>0 <strong>前言</strong></h3><blockquote>
-<p>UUID(Universally Unique Identifier), 通用唯一识别码， 其产生的目的就是为了在分布式的大环境下让每一个独立的有意义的元素都有其唯一的身份识别码，如同我们的身份证号一样。</p>
+        <h3 id="基本组成"><a href="#基本组成" class="headerlink" title="基本组成"></a>基本组成</h3><ul>
+<li><p>图示<br><div id="flowchart-0" class="flow-chart"></div></p>
+<blockquote>
 </blockquote>
-<h3 id="1-抛砖"><a href="#1-抛砖" class="headerlink" title="1 抛砖"></a>1 <strong>抛砖</strong></h3><h4 id="1-java原生UUID生成方式"><a href="#1-java原生UUID生成方式" class="headerlink" title="1. java原生UUID生成方式"></a>1. java原生UUID生成方式</h4><ul>
-<li><p><strong>示例</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String uuid = UUID.randomUUID().toString();</span><br><span class="line">System.out.println(uuid);</span><br><span class="line"><span class="comment">//output: 52f3a858-cd2d-4994-b4f1-9a06839deb45</span></span><br></pre></td></tr></table></figure>
+<p>其中：<br>channel，信道，虚拟连接概念，通过connection获取，java api中该对象用于创建及操作其他对象，包括定义Queue、定义Exchange、绑定Queue与Exchange、发布msg、msg的ack/nack等处理</p>
 </li>
-<li><p><strong>缺点</strong></p>
+<li><p>常用exchange</p>
+<ul>
+<li>direct(routingkey = queueName),</li>
+<li>fanout(分发/广播，绑定在此exchange上的队列，均可收到message),</li>
+<li>topic 正则匹配，<code>routingkey.match(queueName)</code>, eg: <code>nova.*,  nova.wind.#</code></li>
+</ul>
 </li>
 </ul>
+<p>direct(routingkey = queueName),<br>fanout(分发/广播，绑定在此exchange上的队列 均可收到message),<br>topic 正则匹配(routingkey.match(queueName), eg: nova.*,  nova.wind.#)</p>
+<hr>
+<h3 id="RabbitMqConfig"><a href="#RabbitMqConfig" class="headerlink" title="RabbitMqConfig"></a>RabbitMqConfig</h3><ul>
+<li>指定queue、exchange、routingkey，可自动在RabbitMq中创建相应的queue等，并实现绑定</li>
+</ul>
+<pre><code>@Bean(&quot;directQueue&quot;)
+   public Queue directQueue(){
+   return new Queue(rabbitCustomizedProperties.getDirectQueue(), true, false, false);
+}
+
+@Bean
+public DirectExchange directExchange(){
+   return new DirectExchange(rabbitCustomizedProperties.getDirectExchange(), true, false);
+}
+@Bean
+public Binding bind(Queue directQueue, DirectExchange directExchange){
+   return BindingBuilder.bind(directQueue).to(directExchange)
+         .with(rabbitCustomizedProperties.getDirectRoutingkey());
+</code></pre><ul>
+<li>RabbitMq消息序列化：默认是SimpleMessageConverter(jdk)，以下template中指定为Jackson2JsonConverter实现json序列化</li>
+</ul>
+<pre><code>@Bean
+public MessageConverter jackson2JsonConverter(){
+   return new Jackson2JsonMessageConverter();
+}
+@Bean
+public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory, MessageConverter jackson2JsonConverter){
+   RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
+   rabbitTemplate.setMessageConverter(jackson2JsonConverter);
+   return rabbitTemplate;
+}
+</code></pre><ul>
+<li>consumer<ul>
+<li>注解: <code>@RabbitListener(queues= &quot;queueName&quot;),   @RabbitHandler</code></li>
+<li>实现接口 <code>MessageListener</code>， 实现<code>onMessage(Message message)</code>方法<br>or 实现接口 <code>ChannelAwareMessageListener</code>， 实现<code>onMessage (Message message, Channel channel)</code>方法，此接口可以根据channel实现手动ack/nack</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="延迟队列-delayed-queue"><a href="#延迟队列-delayed-queue" class="headerlink" title="延迟队列 delayed queue"></a>延迟队列 delayed queue</h3><ul>
+<li>基本设置<ul>
+<li>队列上设置TTL<br><img src="http://img.blog.csdn.net/20161211161702329?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvemh1X3RpYW53ZWk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="延迟队列"></li>
+<li>message设置TTL<br><code>setExpiration(300000)</code></li>
+<li>指定死信交换器 DLX(DeadLetterExchange)，当消息变为死信(DL)时，自动publish到一个DLX里进行相关处理，internal设置为no， 否则消息无法消费，仅用于exchange间的绑定。<br><img src="http://img.blog.csdn.net/20161210235203042?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvemh1X3RpYW53ZWk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="死信交换器"></li>
+</ul>
+</li>
+<li><p>应用场景简述<br>淘宝下订单，producer发消息至 delayedQueue(A)， 队列过期时间30m，30m后过期转发至isPaidQueue(B)</p>
 <ol>
-<li>UUID随机生成长度为36位的字符串，太长，占用空间较大，就算去掉<code>-</code>，还是很长</li>
-<li>丑陋，反人类的识别度</li>
-<li>无序，若排序几无可能</li>
-<li>索引效率特别低，入库性能差</li>
+<li>客户已支付，consumer消费queue B消息，判断该订单状态为paid，不做处理；</li>
+<li><p>客户未支付，consumer消费 queue B消息，判断该订单状态为unpaid，则将该订单取消，库存恢复。</p>
+<div id="flowchart-1" class="flow-chart"></div></li>
 </ol>
-<h4 id="2-mysql数据库自增ID"><a href="#2-mysql数据库自增ID" class="headerlink" title="2. mysql数据库自增ID"></a>2. mysql数据库自增ID</h4><ul>
-<li><strong>示例</strong><br>创建名为uuid的表，结构如下</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">id</th>
-<th style="text-align:center">field</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">1</td>
-<td style="text-align:center">a</td>
-</tr>
-<tr>
-<td style="text-align:center">PK</td>
-<td style="text-align:center">char(1)</td>
-</tr>
-</tbody>
-</table>
-<p>然后每次获取id:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">REPLACE</span> <span class="keyword">INTO</span> <span class="keyword">uuid</span> (<span class="keyword">field</span>) <span class="keyword">VALUES</span> (<span class="string">'a'</span>);</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">LAST_INSERT_ID</span>();</span><br></pre></td></tr></table></figure></p>
-<p>当然，为了提高性能，体现分布式的优势，我们可以采用分库的方式，使用proxy请求不同的分库，如图<br><img src="http://5b0988e595225.cdn.sohucs.com/images/20180518/2ac0cbcc884b487391f412a08020ab7d.png" alt="proxy分库生成uuid"><br>这样一来，DB1生成的ID是1,4,7,10,13….，DB2生成的ID是2,5,8,11,14…..</p>
-<ul>
-<li><strong>缺点</strong><br>ID生成严重依赖mysql，每次生成都需要请求mysql，在高并发环境下，性能不是很好，如果数据库挂掉，会影响业务</li>
-</ul>
-<h3 id="2-引玉"><a href="#2-引玉" class="headerlink" title="2 引玉"></a>2 <strong>引玉</strong></h3><h4 id="1-Twitter的SnowFlake-雪花算法"><a href="#1-Twitter的SnowFlake-雪花算法" class="headerlink" title="1. Twitter的SnowFlake 雪花算法"></a>1. Twitter的SnowFlake 雪花算法</h4><ul>
-<li><strong>概述</strong><br><img src="http://5b0988e595225.cdn.sohucs.com/images/20180518/1af4eb1ec81d4501a757cfdc9ada72d1.jpeg" alt="snowflake data structure"></li>
-</ul>
-<p><code>1位</code>，不用。二进制中最高位为1的都是负数，但是我们生成的id一般都使用整数，所以这个最高位固定是0用来记录时间戳（毫秒）。</p>
-<p><code>41位</code>，用来记录时间戳（毫秒）。</p>
-<ul>
-<li style="list-style: none"><input type="checkbox" checked> 可以表示2^41−1个数字，</li>
-<li style="list-style: none"><input type="checkbox" checked> 如果只用来表示正整数（计算机中正数包含0），可以表示的数值范围是：0 至 241−1，减1是因为可表示的数值范围是从0开始算的，而不是1。</li>
-<li style="list-style: none"><input type="checkbox" checked> 也就是说41位可以表示241−1个毫秒的值，转化成单位年则是(241−1)/(1000∗60∗60∗24∗365)=69年<br>10位，用来记录工作机器id。<br>可以部署在210=1024个节点，包括5位datacenterId和5位workerId<br>5位（bit）可以表示的最大正整数是2^5−1=31$，即可以用0、1、2、3、….31这32个数字，来表示不同的datecenterId或workerId<br>12位，序列号，用来记录同毫秒内产生的不同id。<br>12位（bit）可以表示的最大正整数是2^12−1=4095，即可以用0、1、2、3、….4094这4095个数字，来表示同一机器同一时间截（毫秒)内产生的4095个ID序号</li>
-</ul>
-<p><code>10位</code>，用来记录工作机器id。</p>
-<ul>
-<li style="list-style: none"><input type="checkbox" checked> 可以部署在2^10=1024个节点，包括5位<code>datacenterId</code>和5位<code>workerId</code></li>
-<li style="list-style: none"><input type="checkbox" checked> 5位（bit）可以表示的最大正整数是$2^5−1=31$，即可以用0、1、2、3、….31这32个数字，来表示不同的datecenterId或workerId</li>
-</ul>
-<p><code>12位</code>，序列号，用来记录同毫秒内产生的不同id。</p>
-<ul>
-<li style="list-style: none"><input type="checkbox" checked> 12位（bit）可以表示的最大正整数是$2^{12}−1=4095$，即可以用0、1、2、3、….4094这4095个数字，来表示同一机器同一时间戳（毫秒)内产生的4095个ID序号</li>
-</ul>
-<ul>
-<li><strong>SHOW THE CODE</strong><br>…</li>
-<li><strong>解惑</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 时间戳差值导致ID位数变化</span><br><span class="line">double v = Math.pow(10, 17);</span><br><span class="line">long val = new Double(v).longValue();</span><br><span class="line">long year =1000 * 60 * 60 * 24 * 365L;</span><br><span class="line">System.out.println((double)(val &gt;&gt; 22) / year);</span><br></pre></td></tr></table></figure>
+</li>
+<li>process<br> <img src="https://app.yinxiang.com/shard/s45/res/6c4482ff-50ec-48a1-9e4f-4eb67d81ece4/rabbit_mq.png" alt="死信-process"></li>
+<li><p>code<br><code>`</code><br>//delay queue<br>@Bean<br>public DirectExchange delayExchange(){<br> return new DirectExchange(rcps.getDelayExchange(),true, false);<br>}<br>@Bean<br>public Queue delayQueue(){<br> Map&lt;String, Object&gt; args = new HashMap&lt;&gt;();<br> args.put(“x-dead-letter-exchange”, rcps.getDeadLetterExchange());<br> args.put(“x-dead-letter-routing-key”, rcps.getDelayRoutingkey());<br> //message过期时间<br> args.put(“x-message-ttl”, rcps.getTimeToLive());<br> //args.put(“x-expires”,1000); 队列过期时间<br> return new Queue(rcps.getDelayQueue(), true, false, false, args);<br>}<br>@Bean<br>public Binding bindDelay(DirectExchange delayExchange, Queue delayQueue){</p>
+<p> return BindingBuilder.bind(delayQueue).to(delayExchange).with(rcps.getDelayRoutingkey());<br>}</p>
 </li>
 </ul>
-<h4 id="2-Redis生成自增"><a href="#2-Redis生成自增" class="headerlink" title="2. Redis生成自增"></a>2. Redis生成自增</h4>
+<p>@Bean<br>public DirectExchange dlx(){<br>   return new DirectExchange(rcps.getDeadLetterExchange(),true, false);<br>}<br>@Bean<br>public Queue dlQueue(){<br>   return new Queue(rcps.getDeadLetterQueue(), true);<br>}</p>
+<p>@Bean<br>public Binding bindDl(DirectExchange dlx, Queue dlQueue){<br>   //with delay routingkey 需与延迟队列key保持一致 否则无法接收到死信 或不指定 默认一致<br>   return BindingBuilder.bind(dlQueue).to(dlx).with(rcps.getDelayRoutingkey());<br><code>`</code></p>
+<p><script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script><textarea id="flowchart-0-code" style="display: none">cf=>start: ConnectionFactory
+conn=>operation: Connection
+c=>operation: Channel
+broker=>operation: Broker
+io=>inputoutput: consist of: exchange, routingkey, queue
+bd=>subroutine: bindings
+cf->conn->c->broker(right)->io(bottom)->bd</textarea><textarea id="flowchart-0-options" style="display: none">{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-0-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-0", options);</script><textarea id="flowchart-1-code" style="display: none">    repo=>start: 库存
+    order=>operation: 下单
+    prod=>operation: producer
+    QA=>subroutine: delayedQueue A (30m 过期)
+    QB=>subroutine: isPaidQueue B
+    paidOrNot=>condition: is paid or not?
+    io=>inputoutput: 未支付，入库存
+    e=>end
+    repo->order->prod()->QA->QB(right)->paidOrNot
+    paidOrNot(yes)->e
+    paidOrNot(no)->io(right)->order</textarea><textarea id="flowchart-1-options" style="display: none">{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-1-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-1-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-1", options);</script></p>
+
         
                 <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
                     <p><strong>
@@ -597,7 +622,7 @@
                             Created by NovaWind.
                         </strong>
                         <br>
-                        <strong>本文链接：</strong><a href="http://bearwind.me/谈技论术/dist_uuid_gen/">http://bearwind.me/谈技论术/dist_uuid_gen/</a>
+                        <strong>本文链接：</strong><a href="http://bearwind.me/tech-talker/rabbitmq/">http://bearwind.me/tech-talker/rabbitmq/</a>
                     </p>
                 </blockquote>
         
@@ -619,13 +644,21 @@
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
+        <a href="/tech-talker/dist_uuid_gen/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
     
-        <a href="/谈技论术/rabbitmq/" id="post_nav-older" class="next-content">
+        <a href="/tech-talker/pin/" id="post_nav-older" class="next-content">
             旧篇
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
@@ -739,7 +772,7 @@
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/自言自语/">自言自语<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/谈技论术/">谈技论术<span class="sidebar_archives-count">3</span></a>
+                <a class="sidebar_archives-link" href="/categories/self-whisper/">自言自语<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/tech-talker/">谈技论术<span class="sidebar_archives-count">3</span></a>
             </li></ul>
         </li>
         
