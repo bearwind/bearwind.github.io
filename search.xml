@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>记一次JWT鉴权问题解决</title>
+      <link href="/tech-talker/jwt/"/>
+      <url>/tech-talker/jwt/</url>
+      
+        <content type="html"><![CDATA[<h3 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h3><ol><li>前后端分离项目，采用统一api网关，使用JWT + redis作为鉴权方式；</li><li>用户登录验证通过，颁发JWT，设置JWT过期时间为2h，redis缓存该用户JWT：<code>set(user:${id}, &quot;Bearer ...&quot;)</code>，并设置该key的TTL为7天；将该有效token通过header返回前端</li><li>鉴权过程：<ul><li>在header里获取token（token-A）并解析获取userId等信息从而获取redis key；</li><li>查询redis获取当前用户token：<ul><li>返回为空（redis过期或未登录等），则该token无效，直接拦截；</li><li>返回非空（token-B），则校验token-A与token-B是否相等，不相等则说明token已被更换，直接拦截</li><li>校验token自身过期时间，若已过期（expire &gt; 2h），由于redis存在该token，但在允许刷新时间内（保持登录时间），系统重新颁发新token，用户无感知。</li></ul></li></ul></li></ol><h3 id="问题出现"><a href="#问题出现" class="headerlink" title="问题出现"></a>问题出现</h3><blockquote><p>某功能页面，渲染的时候会同时调用多个后端接口，一般情况下都是正常的，但偶尔出现渲染一部分数据后会被后端拦截提示未授权，然后跳转登录页。<br>经分析：前端同时调用A、B接口，header中的token为同一个。调用A接口时，token自身正好过期，然后更换为新token，导致调用B接口时由于新旧token不一致被拦截</p></blockquote><h3 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h3><ol><li>当更换新token时，在redis存放一个TTL非常短的（10s或更短）缓存标记，以新旧token为key-value存储的token-flag，<code>set(token-old, token-new)</code>；</li><li>所有接口调用，先校验是否过期，过期则查询1中的token-flag是否存在，存在说明刚刚更换新token，直接放行，无则继续走之前的鉴权过程；</li><li>大致过程：<br>1) 请求A -&gt; token-old过期 -&gt; 颁发新token token-new -&gt; 存储token-flag -&gt; 将token-new放入header返回<br>2) 请求B -&gt; token-old过期 -&gt; 查询token-flag存在 -&gt; 放行（说明在更换新token的保护期内），并将token-flag中的value值token-new放入header返回<br>至此token更换已同步给前端</li></ol><blockquote><p>你以为这样就彻底解决了吗？那就大错特错了！</p></blockquote><h3 id="方案优化"><a href="#方案优化" class="headerlink" title="方案优化"></a>方案优化</h3><p>当token过期时，我们会校验token-flag是否存在，但前端有很多页面都是分模块展示数据，对于这些没有前后调用关系的接口，前端会同时并发调用然后渲染各个模块的数据，提高加载速度、提升用户体验。<br>那么问题就来了：<strong>并发</strong>，老问题户了。<br>当请求并发进来时，A、B请求都发现token-old过期，然后都同时更换新token，存储token-flag，但set操作会覆盖之前的新token出现问题</p><h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><p>token过期，使用<code>SETNX</code>设置token-flag，保证只会生成唯一的新token</p><h3 id="功能迭代"><a href="#功能迭代" class="headerlink" title="功能迭代"></a>功能迭代</h3><blockquote><p>业务说需要支持一个账号多个点登录（登录电脑数n &gt;= 2）</p></blockquote><p><strong>满足她！</strong><br>变更token存储的redis数据结构，string -&gt; list，使用<code>RPUSHX</code>存储多个登录端的token，<code>LPOP</code>大于登录数n的旧token，存放新登录端的token，保证list长度小于n.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 谈技论术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> auth </tag>
+            
+            <tag> redis </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>分布式环境下的UUID生成策略</title>
       <link href="/tech-talker/dist_uuid_gen/"/>
       <url>/tech-talker/dist_uuid_gen/</url>
