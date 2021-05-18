@@ -272,7 +272,7 @@
 
     
         <meta property="article:published_time" content="Thu Jun 21 2018 13:25:00 GMT+0800">
-        <meta property="article:modified_time" content="Mon Jul 15 2019 12:28:21 GMT+0800">
+        <meta property="article:modified_time" content="Tue May 18 2021 20:50:57 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -295,7 +295,7 @@
     "mainEntityOfPage": "https://www.bearwind.xyz/tech-talker/rabbitmq/index.html",
     "headline": "RabbitMq相关",
     "datePublished": "Thu Jun 21 2018 13:25:00 GMT+0800",
-    "dateModified": "Mon Jul 15 2019 12:28:21 GMT+0800",
+    "dateModified": "Tue May 18 2021 20:50:57 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "NovaWind",
@@ -570,9 +570,9 @@ public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory, Messag
 <hr>
 <h3 id="延迟队列-delayed-queue"><a href="#延迟队列-delayed-queue" class="headerlink" title="延迟队列 delayed queue"></a>延迟队列 delayed queue</h3><ul>
 <li>基本设置<ul>
-<li>队列上设置TTL<br><img src="http://img.blog.csdn.net/20161211161702329?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvemh1X3RpYW53ZWk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="延迟队列"></li>
+<li>队列上设置TTL<br><img src="https://gitee.com/bearwind/image_host/raw/master/2018-06/delay_queue.png" alt="延迟队列"></li>
 <li>message设置TTL<br><code>setExpiration(300000)</code></li>
-<li>指定死信交换器 DLX(DeadLetterExchange)，当消息变为死信(DL)时，自动publish到一个DLX里进行相关处理，internal设置为no， 否则消息无法消费，仅用于exchange间的绑定。<br><img src="http://img.blog.csdn.net/20161210235203042?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvemh1X3RpYW53ZWk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="死信交换器"></li>
+<li>指定死信交换器 DLX(DeadLetterExchange)，当消息变为死信(DL)时，自动publish到一个DLX里进行相关处理，internal设置为no， 否则消息无法消费，仅用于exchange间的绑定。<br><img src="https://gitee.com/bearwind/image_host/raw/master/2018-06/delay_ex.png" alt="死信交换器"></li>
 </ul>
 </li>
 <li><p>应用场景简述<br>淘宝下订单，producer发消息至 delayedQueue(A)， 队列过期时间30m，30m后过期转发至isPaidQueue(B)</p>
@@ -582,7 +582,7 @@ public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory, Messag
 <div id="flowchart-1" class="flow-chart"></div></li>
 </ol>
 </li>
-<li>process<br> <img src="https://app.yinxiang.com/shard/s45/res/6c4482ff-50ec-48a1-9e4f-4eb67d81ece4/rabbit_mq.png" alt="死信-process"></li>
+<li>process<br> <img src="https://gitee.com/bearwind/image_host/raw/master/2018-06/delay-ex-process.png" alt="死信-process"></li>
 <li>code</li>
 </ul>
 <pre><code>//delay queue
