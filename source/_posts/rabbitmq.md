@@ -73,11 +73,11 @@ public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory, Messag
 ### 延迟队列 delayed queue
 + 基本设置
  - 队列上设置TTL
- ![延迟队列](http://img.blog.csdn.net/20161211161702329?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvemh1X3RpYW53ZWk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+ ![延迟队列](https://gitee.com/bearwind/image_host/raw/master/2018-06/delay_queue.png)
  - message设置TTL
    ``setExpiration(300000)``
  - 指定死信交换器 DLX(DeadLetterExchange)，当消息变为死信(DL)时，自动publish到一个DLX里进行相关处理，internal设置为no， 否则消息无法消费，仅用于exchange间的绑定。
- ![死信交换器](http://img.blog.csdn.net/20161210235203042?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvemh1X3RpYW53ZWk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+ ![死信交换器](https://gitee.com/bearwind/image_host/raw/master/2018-06/delay_ex.png)
 + 应用场景简述
   淘宝下订单，producer发消息至 delayedQueue(A)， 队列过期时间30m，30m后过期转发至isPaidQueue(B)
     1. 客户已支付，consumer消费queue B消息，判断该订单状态为paid，不做处理；
@@ -97,7 +97,7 @@ public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory, Messag
     paidOrNot(no)->io(right)->order
     ```
 + process
-   ![死信-process](https://app.yinxiang.com/shard/s45/res/6c4482ff-50ec-48a1-9e4f-4eb67d81ece4/rabbit_mq.png)
+   ![死信-process](https://gitee.com/bearwind/image_host/raw/master/2018-06/delay-ex-process.png)
 + code
 
 ```

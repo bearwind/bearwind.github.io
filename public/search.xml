@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>记一次JWT鉴权问题解决</title>
+      <link href="/tech-talker/jwt/"/>
+      <url>/tech-talker/jwt/</url>
+      
+        <content type="html"><![CDATA[<h3 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h3><ol><li>前后端分离项目，采用统一api网关，使用JWT + redis作为鉴权方式；</li><li>用户登录验证通过，颁发JWT，设置JWT过期时间为2h，redis缓存该用户JWT：<code>set(user:${id}, &quot;Bearer ...&quot;)</code>，并设置该key的TTL为7天；将该有效token通过header返回前端</li><li>鉴权过程：<ul><li>在header里获取token（token-A）并解析获取userId等信息从而获取redis key；</li><li>查询redis获取当前用户token：<ul><li>返回为空（redis过期或未登录等），则该token无效，直接拦截；</li><li>返回非空（token-B），则校验token-A与token-B是否相等，不相等则说明token已被更换，直接拦截</li><li>校验token自身过期时间，若已过期（expire &gt; 2h），由于redis存在该token，但在允许刷新时间内（保持登录时间），系统重新颁发新token，用户无感知。</li></ul></li></ul></li></ol><h3 id="问题出现"><a href="#问题出现" class="headerlink" title="问题出现"></a>问题出现</h3><blockquote><p>某功能页面，渲染的时候会同时调用多个后端接口，一般情况下都是正常的，但偶尔出现渲染一部分数据后会被后端拦截提示未授权，然后跳转登录页。<br>经分析：前端同时调用A、B接口，header中的token为同一个。调用A接口时，token自身正好过期，然后更换为新token，导致调用B接口时由于新旧token不一致被拦截</p></blockquote><h3 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h3><ol><li>当更换新token时，在redis存放一个TTL非常短的（10s或更短）缓存标记，以新旧token为key-value存储的token-flag，<code>set(token-old, token-new)</code>；</li><li>所有接口调用，先校验是否过期，过期则查询1中的token-flag是否存在，存在说明刚刚更换新token，直接放行，无则继续走之前的鉴权过程；</li><li>大致过程：<br>1) 请求A -&gt; token-old过期 -&gt; 颁发新token token-new -&gt; 存储token-flag -&gt; 将token-new放入header返回<br>2) 请求B -&gt; token-old过期 -&gt; 查询token-flag存在 -&gt; 放行（说明在更换新token的保护期内），并将token-flag中的value值token-new放入header返回<br>至此token更换已同步给前端</li></ol><blockquote><p>你以为这样就彻底解决了吗？那就大错特错了！</p></blockquote><h3 id="方案优化"><a href="#方案优化" class="headerlink" title="方案优化"></a>方案优化</h3><p>当token过期时，我们会校验token-flag是否存在，但前端有很多页面都是分模块展示数据，对于这些没有前后调用关系的接口，前端会同时并发调用然后渲染各个模块的数据，提高加载速度、提升用户体验。<br>那么问题就来了：<strong>并发</strong>，老问题户了。<br>当请求并发进来时，A、B请求都发现token-old过期，然后都同时更换新token，存储token-flag，但set操作会覆盖之前的新token出现问题</p><h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><p>token过期，使用<code>SETNX</code>设置token-flag，保证只会生成唯一的新token</p><h3 id="功能迭代"><a href="#功能迭代" class="headerlink" title="功能迭代"></a>功能迭代</h3><blockquote><p>业务说需要支持一个账号多个点登录（登录电脑数n &gt;= 2）</p></blockquote><p><strong>满足她！</strong><br>变更token存储的redis数据结构，string -&gt; list，使用<code>RPUSHX</code>存储多个登录端的token，<code>LPOP</code>大于登录数n的旧token，存放新登录端的token，保证list长度小于n.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 谈技论术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> middle-ware </tag>
+            
+            <tag> auth </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>分布式环境下的UUID生成策略</title>
+      <link href="/tech-talker/dist_uuid_gen/"/>
+      <url>/tech-talker/dist_uuid_gen/</url>
+      
+        <content type="html"><![CDATA[<h3 id="0-前言"><a href="#0-前言" class="headerlink" title="0 前言"></a>0 <strong>前言</strong></h3><blockquote><p>UUID(Universally Unique Identifier), 通用唯一识别码， 其产生的目的就是为了在分布式的大环境下让每一个独立的有意义的元素都有其唯一的身份识别码，如同我们的身份证号一样。</p></blockquote><h3 id="1-抛砖"><a href="#1-抛砖" class="headerlink" title="1 抛砖"></a>1 <strong>抛砖</strong></h3><h4 id="1-java原生UUID生成方式"><a href="#1-java原生UUID生成方式" class="headerlink" title="1. java原生UUID生成方式"></a>1. java原生UUID生成方式</h4><ul><li><strong>示例</strong><pre><code class="java">String uuid = UUID.randomUUID().toString();System.out.println(uuid);//output: 52f3a858-cd2d-4994-b4f1-9a06839deb45</code></pre></li><li><strong>缺点</strong></li></ul><ol><li>UUID随机生成长度为36位的字符串，太长，占用空间较大，就算去掉<code>-</code>，还是很长</li><li>丑陋，反人类的识别度</li><li>无序，若排序几无可能</li><li>索引效率特别低，入库性能差</li></ol><h4 id="2-mysql数据库自增ID"><a href="#2-mysql数据库自增ID" class="headerlink" title="2. mysql数据库自增ID"></a>2. mysql数据库自增ID</h4><ul><li><strong>示例</strong><br>创建名为uuid的表，结构如下</li></ul><table><thead><tr><th style="text-align:center">id</th><th style="text-align:center">field</th></tr></thead><tbody><tr><td style="text-align:center">1</td><td style="text-align:center">a</td></tr><tr><td style="text-align:center">PK</td><td style="text-align:center">char(1)</td></tr></tbody></table><p>然后每次获取id:</p><pre><code class="sql">REPLACE INTO uuid (field) VALUES (&#39;a&#39;);select LAST_INSERT_ID();</code></pre><p>当然，为了提高性能，体现分布式的优势，我们可以采用分库的方式，使用proxy请求不同的分库，如图<br><img src="http://5b0988e595225.cdn.sohucs.com/images/20180518/2ac0cbcc884b487391f412a08020ab7d.png" alt="proxy分库生成uuid"><br>这样一来，DB1生成的ID是1,4,7,10,13….，DB2生成的ID是2,5,8,11,14…..</p><ul><li><strong>缺点</strong><br>ID生成严重依赖mysql，每次生成都需要请求mysql，在高并发环境下，性能不是很好，如果数据库挂掉，会影响业务</li></ul><h3 id="2-引玉"><a href="#2-引玉" class="headerlink" title="2 引玉"></a>2 <strong>引玉</strong></h3><h4 id="1-Twitter的SnowFlake-雪花算法"><a href="#1-Twitter的SnowFlake-雪花算法" class="headerlink" title="1. Twitter的SnowFlake 雪花算法"></a>1. Twitter的SnowFlake 雪花算法</h4><ul><li><strong>概述</strong><br><img src="http://5b0988e595225.cdn.sohucs.com/images/20180518/1af4eb1ec81d4501a757cfdc9ada72d1.jpeg" alt="snowflake data structure"></li></ul><p><code>1位</code>，不用。二进制中最高位为1的都是负数，但是我们生成的id一般都使用整数，所以这个最高位固定是0用来记录时间戳（毫秒）。</p><p><code>41位</code>，用来记录时间戳（毫秒）。</p><ul><li style="list-style: none"><input type="checkbox" checked> 可以表示2^41−1个数字，</li><li style="list-style: none"><input type="checkbox" checked> 如果只用来表示正整数（计算机中正数包含0），可以表示的数值范围是：0 至 241−1，减1是因为可表示的数值范围是从0开始算的，而不是1。</li><li style="list-style: none"><input type="checkbox" checked> 也就是说41位可以表示241−1个毫秒的值，转化成单位年则是(241−1)/(1000∗60∗60∗24∗365)=69年<br>10位，用来记录工作机器id。<br>可以部署在210=1024个节点，包括5位datacenterId和5位workerId<br>5位（bit）可以表示的最大正整数是2^5−1=31$，即可以用0、1、2、3、….31这32个数字，来表示不同的datecenterId或workerId<br>12位，序列号，用来记录同毫秒内产生的不同id。<br>12位（bit）可以表示的最大正整数是2^12−1=4095，即可以用0、1、2、3、….4094这4095个数字，来表示同一机器同一时间截（毫秒)内产生的4095个ID序号</li></ul><p><code>10位</code>，用来记录工作机器id。</p><ul><li style="list-style: none"><input type="checkbox" checked> 可以部署在2^10=1024个节点，包括5位<code>datacenterId</code>和5位<code>workerId</code></li><li style="list-style: none"><input type="checkbox" checked> 5位（bit）可以表示的最大正整数是$2^5−1=31$，即可以用0、1、2、3、….31这32个数字，来表示不同的datecenterId或workerId</li></ul><p><code>12位</code>，序列号，用来记录同毫秒内产生的不同id。</p><ul><li style="list-style: none"><input type="checkbox" checked> 12位（bit）可以表示的最大正整数是$2^{12}−1=4095$，即可以用0、1、2、3、….4094这4095个数字，来表示同一机器同一时间戳（毫秒)内产生的4095个ID序号</li></ul><ul><li><strong>SHOW THE CODE</strong><br>…</li><li><strong>解惑</strong><pre><code>// 时间戳差值导致ID位数变化double v = Math.pow(10, 17);long val = new Double(v).longValue();long year =1000 * 60 * 60 * 24 * 365L;System.out.println((double)(val &gt;&gt; 22) / year);</code></pre></li></ul><h4 id="2-Redis生成自增"><a href="#2-Redis生成自增" class="headerlink" title="2. Redis生成自增"></a>2. Redis生成自增</h4>]]></content>
+      
+      
+      <categories>
+          
+          <category> 谈技论术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> middle-ware </tag>
+            
+            <tag> distribution </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>RabbitMq相关</title>
+      <link href="/tech-talker/rabbitmq/"/>
+      <url>/tech-talker/rabbitmq/</url>
+      
+        <content type="html"><![CDATA[<h3 id="基本组成"><a href="#基本组成" class="headerlink" title="基本组成"></a>基本组成</h3><ul><li><p>图示<br><div id="flowchart-0" class="flow-chart"></div></p><blockquote></blockquote><p>其中：<br>channel，信道，虚拟连接概念，通过connection获取，java api中该对象用于创建及操作其他对象，包括定义Queue、定义Exchange、绑定Queue与Exchange、发布msg、msg的ack/nack等处理</p></li><li><p>常用exchange</p><ul><li>direct(routingkey = queueName),</li><li>fanout(分发/广播，绑定在此exchange上的队列，均可收到message),</li><li>topic 正则匹配，<code>routingkey.match(queueName)</code>, eg: <code>nova.*,  nova.wind.#</code></li></ul></li></ul><p>direct(routingkey = queueName),<br>fanout(分发/广播，绑定在此exchange上的队列 均可收到message),<br>topic 正则匹配(routingkey.match(queueName), eg: nova.*,  nova.wind.#)</p><hr><h3 id="RabbitMqConfig"><a href="#RabbitMqConfig" class="headerlink" title="RabbitMqConfig"></a>RabbitMqConfig</h3><ul><li>指定queue、exchange、routingkey，可自动在RabbitMq中创建相应的queue等，并实现绑定</li></ul><pre><code>@Bean(&quot;directQueue&quot;)   public Queue directQueue(){   return new Queue(rabbitCustomizedProperties.getDirectQueue(), true, false, false);}@Beanpublic DirectExchange directExchange(){   return new DirectExchange(rabbitCustomizedProperties.getDirectExchange(), true, false);}@Beanpublic Binding bind(Queue directQueue, DirectExchange directExchange){   return BindingBuilder.bind(directQueue).to(directExchange)         .with(rabbitCustomizedProperties.getDirectRoutingkey());</code></pre><ul><li>RabbitMq消息序列化：默认是SimpleMessageConverter(jdk)，以下template中指定为Jackson2JsonConverter实现json序列化</li></ul><pre><code>@Beanpublic MessageConverter jackson2JsonConverter(){   return new Jackson2JsonMessageConverter();}@Beanpublic RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory, MessageConverter jackson2JsonConverter){   RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);   rabbitTemplate.setMessageConverter(jackson2JsonConverter);   return rabbitTemplate;}</code></pre><ul><li>consumer<ul><li>注解: <code>@RabbitListener(queues= &quot;queueName&quot;),   @RabbitHandler</code></li><li>实现接口 <code>MessageListener</code>， 实现<code>onMessage(Message message)</code>方法<br>or 实现接口 <code>ChannelAwareMessageListener</code>， 实现<code>onMessage (Message message, Channel channel)</code>方法，此接口可以根据channel实现手动ack/nack</li></ul></li></ul><hr><h3 id="延迟队列-delayed-queue"><a href="#延迟队列-delayed-queue" class="headerlink" title="延迟队列 delayed queue"></a>延迟队列 delayed queue</h3><ul><li>基本设置<ul><li>队列上设置TTL<br><img src="https://gitee.com/bearwind/image_host/raw/master/2018-06/delay_queue.png" alt="延迟队列"></li><li>message设置TTL<br><code>setExpiration(300000)</code></li><li>指定死信交换器 DLX(DeadLetterExchange)，当消息变为死信(DL)时，自动publish到一个DLX里进行相关处理，internal设置为no， 否则消息无法消费，仅用于exchange间的绑定。<br><img src="https://gitee.com/bearwind/image_host/raw/master/2018-06/delay_ex.png" alt="死信交换器"></li></ul></li><li><p>应用场景简述<br>淘宝下订单，producer发消息至 delayedQueue(A)， 队列过期时间30m，30m后过期转发至isPaidQueue(B)</p><ol><li>客户已支付，consumer消费queue B消息，判断该订单状态为paid，不做处理；</li><li><p>客户未支付，consumer消费 queue B消息，判断该订单状态为unpaid，则将该订单取消，库存恢复。</p><div id="flowchart-1" class="flow-chart"></div></li></ol></li><li>process<br> <img src="https://gitee.com/bearwind/image_host/raw/master/2018-06/delay-ex-process.png" alt="死信-process"></li><li>code</li></ul><pre><code>//delay queue@Beanpublic DirectExchange delayExchange(){   return new DirectExchange(rcps.getDelayExchange(),true, false);}@Beanpublic Queue delayQueue(){   Map&lt;String, Object&gt; args = new HashMap&lt;&gt;();   args.put(&quot;x-dead-letter-exchange&quot;, rcps.getDeadLetterExchange());   args.put(&quot;x-dead-letter-routing-key&quot;, rcps.getDelayRoutingkey());   //message过期时间   args.put(&quot;x-message-ttl&quot;, rcps.getTimeToLive());   //args.put(&quot;x-expires&quot;,1000); 队列过期时间   return new Queue(rcps.getDelayQueue(), true, false, false, args);}@Beanpublic Binding bindDelay(DirectExchange delayExchange, Queue delayQueue){   return BindingBuilder.bind(delayQueue).to(delayExchange).with(rcps.getDelayRoutingkey());}@Beanpublic DirectExchange dlx(){   return new DirectExchange(rcps.getDeadLetterExchange(),true, false);}@Beanpublic Queue dlQueue(){   return new Queue(rcps.getDeadLetterQueue(), true);}@Beanpublic Binding bindDl(DirectExchange dlx, Queue dlQueue){   //with delay routingkey 需与延迟队列key保持一致 否则无法接收到死信 或不指定 默认一致   return BindingBuilder.bind(dlQueue).to(dlx).with(rcps.getDelayRoutingkey());</code></pre><p><script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script><textarea id="flowchart-0-code" style="display: none">cf=>start: ConnectionFactoryconn=>operation: Connectionc=>operation: Channelbroker=>operation: Brokerio=>inputoutput: consist of: exchange, routingkey, queuebd=>subroutine: bindingscf->conn->c->broker(right)->io(bottom)->bd</textarea><textarea id="flowchart-0-options" style="display: none">{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-0-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-0", options);</script><textarea id="flowchart-1-code" style="display: none">    repo=>start: 库存    order=>operation: 下单    prod=>operation: producer    QA=>subroutine: delayedQueue A (30m 过期)    QB=>subroutine: isPaidQueue B    paidOrNot=>condition: is paid or not?    io=>inputoutput: 未支付，入库存    e=>end    repo->order->prod()->QA->QB(right)->paidOrNot    paidOrNot(yes)->e    paidOrNot(no)->io(right)->order</textarea><textarea id="flowchart-1-options" style="display: none">{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-1-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-1-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-1", options);</script></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 谈技论术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> middle-ware </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>搭建Blog拾遗及相关资料归档</title>
+      <link href="/tech-talker/pin/"/>
+      <url>/tech-talker/pin/</url>
+      
+        <content type="html"><![CDATA[<h4 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h4><p>Ubuntu搭建Node.js环境，我只记两点：</p><ul><li>官网下载最新node版本<br><a href="https://nodejs.org/en/" target="_blank" rel="noopener">node官网</a></li><li><p>使用npm时出现：</p><pre><code class="shell">Error: /usr/bin/env: node:没有那个文件或目录</code></pre><blockquote><p>cause: ubuntu避免包冲突，会将nodejs操作命令改为nodejs，而不是node</p></blockquote><p>执行命令：</p><pre><code class="shell">sudo ln -s /usr/bin/nodejs /usr/bin/node</code></pre></li></ul><h4 id="Theme"><a href="#Theme" class="headerlink" title="Theme"></a>Theme</h4><h5 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h5><p>本blog使用的主题为<code>material</code>，也许你可能在执行<code>hexo g</code>的时候可能会遇到如下错误：<br><code>Internal watch failed: watch ENOSPC</code><br>解决办法，执行命令：  </p><pre><code class="shell">echo fs.inotify.max_user_watches=582222 | sudo tee -a /etc/sysctl.conf &amp;&amp; sudo sysctl -p</code></pre><p>然后再执行<code>hexo g</code>.</p><h5 id="相关资料归档"><a href="#相关资料归档" class="headerlink" title="相关资料归档"></a>相关资料归档</h5><ul><li><a href="https://github.com/viosey/hexo-theme-material" target="_blank" rel="noopener">material-theme-github</a></li><li><a href="https://neko-dev.github.io/material-theme-docs/#/" target="_blank" rel="noopener">theme-doc</a></li><li><a href="https://material.io/tools/icons/" target="_blank" rel="noopener">icons</a>, 直接复制icon名称到主题<code>_config.yml</code>相应位置中<pre><code class="yaml">pages:        关于我:            link: &quot;/aboutMe&quot;            icon: round-fingerprint-24px.svg            divider: false</code></pre></li><li>图片压缩，小白玩法： <a href="http://www.yasuotu.com/" target="_blank" rel="noopener">compress-image</a>  </li><li><blockquote><p>感谢教程：<a href="https://my.oschina.net/ryaneLee/blog/638440" target="_blank" rel="noopener">GitHub+Hexo搭建个人Blog</a></p></blockquote></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 谈技论术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+            <tag> blog </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>诞生</title>
+      <link href="/self-whisper/origin/"/>
+      <url>/self-whisper/origin/</url>
+      
+        <content type="html"><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><blockquote><p>有时候，遥望星空，你可能会惊奇地发现：在某一星区，出现了一颗从来没有见过的明亮星星！<br>然而仅仅过了几个月甚至几天，它又渐渐消失了。<br>—— Nova, 新星  </p><ul><li>没什么别的，就是单纯的很喜欢这个单词。</li><li>年少时在warcraft 3中，操纵litch的技能N(Frost Nova)，第一次接触到这个词。</li><li>现在想起来，所有被称作Nova的游戏技能，其实际效果真的很契合这个单词的本意：<br><code>散发着耀眼的光芒，然后消逝</code>。</li><li>当然，这个词的发音<code>/&#39;noʊvə/</code>真的很顺口…</li></ul></blockquote><h4 id="缘由"><a href="#缘由" class="headerlink" title="缘由"></a>缘由</h4><p><strong> 总是开发着无聊的接口，乏味的系统，一直对能描绘出夺人眼球的美丽脸庞这种技能蠢蠢欲动，<br>但当我面对那如abyss般深不见底的恐怖<code>前端</code>的时候，我想我现在还没有勇气去踏入这条我的不归路。</strong></p><p>作为一只后端程序猿，从没有放弃成为一个全栈开发工程师，挣扎在模板开发引擎的泥潭中，嘴上骂着脏字，手上还不得不敲着<code>${name}</code>和<code>th:replace</code> …  </p><h4 id="波折"><a href="#波折" class="headerlink" title="波折"></a>波折</h4><p>为了使用<code>npm</code>，装个<code>node.js</code>都折腾了半天，我更加坚信怀疑前端这个小姐姐我爱不上了…</p><p>而且我竟然显现出了可憎的举措：对网上咒骂<code>js</code>的言论啧啧称赞——得不到我就恨！</p><h4 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h4><p>然后心里的种子在多次的惊鸿一瞥之后，开始生根发芽，直到我看到了public formal version…  </p><blockquote><p>所以一切就顺利成章的开始了。</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 自言自语 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> me </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+    
+    
+    <entry>
+      <title></title>
+      <link href="/aboutMe/index.html"/>
+      <url>/aboutMe/index.html</url>
+      
+        <content type="html"><![CDATA[<ul><li>BearWind, 中文名直译, 对， 你肯定看出来了！<br>只因为喜欢Nova这个单词， 所以习惯性留名为NovaWind.</li><li>程序员一个…</li><li>小时候会飞，不知道为什么长大就不会了…</li><li>其他的，想到再说吧。</li><li>birth: 90-5-2</li></ul><blockquote><p>Contact: </p></blockquote><ul><li>phone:</li></ul><pre><code class="java">public static void main(String[] args) {    //just already mentioned...      Integer[] secretCode = new Integer[]{?, ?, ?, ?};      Integer[] numbers = {6, 3, 8, 5, 4, 2, 7, 0, 9, 1};      StringBuilder asterisks = new StringBuilder();      for(Integer code : secretCode){          asterisks.append(numbers[code]);      }      String phone = &quot;185&quot; + asterisks + &quot;5866&quot;;      System.out.println(phone);    }</code></pre><pre><code class="python">NUMBERS = (2, 3, 1, 5, 4, 6, 7, 0, 9, 8)def get_code(secretcode: str):    return [int(x) for x in secretcode.replace(&#39;-&#39;, &#39;&#39;)][::-1]if __name__ == &#39;__main__&#39;:    secret_code_str = ?    asterisks = &#39;&#39;    for n in get_code(secret_code_str):        asterisks += str(NUMBERS[n])    print(&#39;185&#39; + asterisks + &#39;5866&#39;)</code></pre><ul><li>location: Pudong new District, Shanghai</li><li>github: <a href="https://github.com/bearwind/" target="_blank" rel="noopener">Click me !</a></li></ul>]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/gallery/gallery.json"/>
+      <url>/gallery/gallery.json</url>
+      
+        <content type="html"><![CDATA[{"Name":{"full_link":"https://www.baidu.com/s?wd=%e5%84%bf%e7%ab%a5%e8%8a%82&tn=SE_Pclogo_6ysd4c7a&sa=ire_dl_gh_logo&rsv_dl=igh_logo_pc","thumb_link":"https://www.baidu.com/s?wd=%e5%84%bf%e7%ab%a5%e8%8a%82&tn=SE_Pclogo_6ysd4c7a&sa=ire_dl_gh_logo&rsv_dl=igh_logo_pc","descr":"my current leader"}}]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>图片存货</title>
+      <link href="/gallery/index.html"/>
+      <url>/gallery/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>tags</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>timeline</title>
+      <link href="/timeline/index.html"/>
+      <url>/timeline/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+  
+</search>
