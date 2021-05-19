@@ -52,7 +52,7 @@
     
     <title>
         
-            记一次JWT鉴权问题解决 | 
+            搭建Blog拾遗及相关资料归档 | 
         
         It&#39;s me, Bear &amp; Wind.
     </title>
@@ -63,7 +63,7 @@
 
     <meta name="format-detection" content="telephone=no">
     <meta name="description" itemprop="description" content>
-    <meta name="keywords" content=",middle-ware,auth">
+    <meta name="keywords" content=",hexo,blog">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -248,7 +248,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="It&#39;s me, Bear &amp; Wind.">
-    <meta name="msapplication-starturl" content="https://www.bearwind.xyz/tech-talker/jwt/">
+    <meta name="msapplication-starturl" content="https://www.bearwind.xyz/tech-talker/pin">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="It&#39;s me, Bear &amp; Wind.">
@@ -263,16 +263,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="https://www.bearwind.xyz/tech-talker/jwt/">
+    <meta property="og:url" content="https://www.bearwind.xyz/tech-talker/pin">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="记一次JWT鉴权问题解决 | It&#39;s me, Bear &amp; Wind.">
+    <meta property="og:title" content="搭建Blog拾遗及相关资料归档 | It&#39;s me, Bear &amp; Wind.">
     <meta property="og:image" content="/img/favicon.png">
     <meta property="og:description" content>
-    <meta property="og:article:tag" content="middle-ware"> <meta property="og:article:tag" content="auth"> 
+    <meta property="og:article:tag" content="hexo"> <meta property="og:article:tag" content="blog"> 
 
     
-        <meta property="article:published_time" content="Sun May 12 2019 14:25:00 GMT+0800">
-        <meta property="article:modified_time" content="Tue May 18 2021 19:23:38 GMT+0800">
+        <meta property="article:published_time" content="Wed May 30 2018 15:23:00 GMT+0800">
+        <meta property="article:modified_time" content="Mon Jul 08 2019 09:31:10 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -280,7 +280,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://www.bearwind.xyz/tech-talker/jwt/index.html">
+        <link rel="canonical" href="https://www.bearwind.xyz/tech-talker/pin">
     
 
     <!-- Structured-data for SEO -->
@@ -292,10 +292,10 @@
 {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "mainEntityOfPage": "https://www.bearwind.xyz/tech-talker/jwt/index.html",
-    "headline": "记一次JWT鉴权问题解决",
-    "datePublished": "Sun May 12 2019 14:25:00 GMT+0800",
-    "dateModified": "Tue May 18 2021 19:23:38 GMT+0800",
+    "mainEntityOfPage": "https://www.bearwind.xyz/tech-talker/pin",
+    "headline": "搭建Blog拾遗及相关资料归档",
+    "datePublished": "Wed May 30 2018 15:23:00 GMT+0800",
+    "dateModified": "Mon Jul 08 2019 09:31:10 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "NovaWind",
@@ -313,7 +313,7 @@
             "url": "/img/favicon.png"
         }
     },
-    "keywords": ",middle-ware,auth",
+    "keywords": ",hexo,blog",
     "description": "",
 }
 </script>
@@ -378,7 +378,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#问题背景"><span class="post-toc-number">1.</span> <span class="post-toc-text">问题背景</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#问题出现"><span class="post-toc-number">2.</span> <span class="post-toc-text">问题出现</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#问题解决"><span class="post-toc-number">3.</span> <span class="post-toc-text">问题解决</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#方案优化"><span class="post-toc-number">4.</span> <span class="post-toc-text">方案优化</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解决"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">解决</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#功能迭代"><span class="post-toc-number">5.</span> <span class="post-toc-text">功能迭代</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Node-js"><span class="post-toc-number">1.</span> <span class="post-toc-text">Node.js</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Theme"><span class="post-toc-number">2.</span> <span class="post-toc-text">Theme</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#遇到的问题"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">遇到的问题</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#相关资料归档"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">相关资料归档</span></a></li></ol></li></ol>
     </ul>
     
 
@@ -410,7 +410,7 @@
         
     
             <p class="article-headline-p">
-                记一次JWT鉴权问题解决
+                搭建Blog拾遗及相关资料归档
             </p>
         </div>
 
@@ -429,7 +429,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>NovaWind</strong>
-        <span>5月 12, 2019</span>
+        <span>5月 30, 2018</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -453,7 +453,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/auth/">auth</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/middle-ware/">middle-ware</a>
+        <a class="post_tag-link" href="/tags/blog/">blog</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/hexo/">hexo</a>
     </li></ul>
     
 
@@ -481,7 +481,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=记一次JWT鉴权问题解决&url=https://www.bearwind.xyz/tech-talker/jwt/index.html&pic=https://www.bearwind.xyz/img/favicon.png&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=搭建Blog拾遗及相关资料归档&url=https://www.bearwind.xyz/tech-talker/pin&pic=https://www.bearwind.xyz/img/favicon.png&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -515,37 +515,40 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h3 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h3><ol>
-<li>前后端分离项目，采用统一api网关，使用JWT + redis作为鉴权方式；</li>
-<li>用户登录验证通过，颁发JWT，设置JWT过期时间为2h，redis缓存该用户JWT：<code>set(user:${id}, &quot;Bearer ...&quot;)</code>，并设置该key的TTL为7天；将该有效token通过header返回前端</li>
-<li>鉴权过程：<ul>
-<li>在header里获取token（token-A）并解析获取userId等信息从而获取redis key；</li>
-<li>查询redis获取当前用户token：<ul>
-<li>返回为空（redis过期或未登录等），则该token无效，直接拦截；</li>
-<li>返回非空（token-B），则校验token-A与token-B是否相等，不相等则说明token已被更换，直接拦截</li>
-<li>校验token自身过期时间，若已过期（expire &gt; 2h），由于redis存在该token，但在允许刷新时间内（保持登录时间），系统重新颁发新token，用户无感知。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<h3 id="问题出现"><a href="#问题出现" class="headerlink" title="问题出现"></a>问题出现</h3><blockquote>
-<p>某功能页面，渲染的时候会同时调用多个后端接口，一般情况下都是正常的，但偶尔出现渲染一部分数据后会被后端拦截提示未授权，然后跳转登录页。<br>经分析：前端同时调用A、B接口，header中的token为同一个。调用A接口时，token自身正好过期，然后更换为新token，导致调用B接口时由于新旧token不一致被拦截</p>
-</blockquote>
-<h3 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h3><ol>
-<li>当更换新token时，在redis存放一个TTL非常短的（10s或更短）缓存标记，以新旧token为key-value存储的token-flag，<code>set(token-old, token-new)</code>；</li>
-<li>所有接口调用，先校验是否过期，过期则查询1中的token-flag是否存在，存在说明刚刚更换新token，直接放行，无则继续走之前的鉴权过程；</li>
-<li>大致过程：<br>1) 请求A -&gt; token-old过期 -&gt; 颁发新token token-new -&gt; 存储token-flag -&gt; 将token-new放入header返回<br>2) 请求B -&gt; token-old过期 -&gt; 查询token-flag存在 -&gt; 放行（说明在更换新token的保护期内），并将token-flag中的value值token-new放入header返回<br>至此token更换已同步给前端</li>
-</ol>
+        <h4 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h4><p>Ubuntu搭建Node.js环境，我只记两点：</p>
+<ul>
+<li>官网下载最新node版本<br><a href="https://nodejs.org/en/" target="_blank" rel="noopener">node官网</a></li>
+<li><p>使用npm时出现：</p>
+<pre><code class="shell">Error: /usr/bin/env: node:没有那个文件或目录
+</code></pre>
 <blockquote>
-<p>你以为这样就彻底解决了吗？那就大错特错了！</p>
+<p>cause: ubuntu避免包冲突，会将nodejs操作命令改为nodejs，而不是node</p>
 </blockquote>
-<h3 id="方案优化"><a href="#方案优化" class="headerlink" title="方案优化"></a>方案优化</h3><p>当token过期时，我们会校验token-flag是否存在，但前端有很多页面都是分模块展示数据，对于这些没有前后调用关系的接口，前端会同时并发调用然后渲染各个模块的数据，提高加载速度、提升用户体验。<br>那么问题就来了：<strong>并发</strong>，老问题户了。<br>当请求并发进来时，A、B请求都发现token-old过期，然后都同时更换新token，存储token-flag，但set操作会覆盖之前的新token出现问题</p>
-<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><p>token过期，使用<code>SETNX</code>设置token-flag，保证只会生成唯一的新token</p>
-<h3 id="功能迭代"><a href="#功能迭代" class="headerlink" title="功能迭代"></a>功能迭代</h3><blockquote>
-<p>业务说需要支持一个账号多个点登录（登录电脑数n &gt;= 2）</p>
+<p>执行命令：</p>
+<pre><code class="shell">sudo ln -s /usr/bin/nodejs /usr/bin/node
+</code></pre>
+</li>
+</ul>
+<h4 id="Theme"><a href="#Theme" class="headerlink" title="Theme"></a>Theme</h4><h5 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h5><p>本blog使用的主题为<code>material</code>，也许你可能在执行<code>hexo g</code>的时候可能会遇到如下错误：<br><code>Internal watch failed: watch ENOSPC</code><br>解决办法，执行命令：  </p>
+<pre><code class="shell">echo fs.inotify.max_user_watches=582222 | sudo tee -a /etc/sysctl.conf &amp;&amp; sudo sysctl -p
+</code></pre>
+<p>然后再执行<code>hexo g</code>.</p>
+<h5 id="相关资料归档"><a href="#相关资料归档" class="headerlink" title="相关资料归档"></a>相关资料归档</h5><ul>
+<li><a href="https://github.com/viosey/hexo-theme-material" target="_blank" rel="noopener">material-theme-github</a></li>
+<li><a href="https://neko-dev.github.io/material-theme-docs/#/" target="_blank" rel="noopener">theme-doc</a></li>
+<li><a href="https://material.io/tools/icons/" target="_blank" rel="noopener">icons</a>, 直接复制icon名称到主题<code>_config.yml</code>相应位置中<pre><code class="yaml">pages:
+        关于我:
+            link: &quot;/aboutMe&quot;
+            icon: round-fingerprint-24px.svg
+            divider: false
+</code></pre>
+</li>
+<li>图片压缩，小白玩法： <a href="http://www.yasuotu.com/" target="_blank" rel="noopener">compress-image</a>  </li>
+<li><blockquote>
+<p>感谢教程：<a href="https://my.oschina.net/ryaneLee/blog/638440" target="_blank" rel="noopener">GitHub+Hexo搭建个人Blog</a></p>
 </blockquote>
-<p><strong>满足她！</strong><br>变更token存储的redis数据结构，string -&gt; list，使用<code>RPUSHX</code>存储多个登录端的token，<code>LPOP</code>大于登录数n的旧token，存放新登录端的token，保证list长度小于n.</p>
+</li>
+</ul>
 
         
     
@@ -562,7 +565,7 @@
     <!-- 使用 changyan -->
 <div id="changyan-comment">
     <!--PC和WAP自适应版-->
-<div id="SOHUCS" sid="tech-talker/jwt/"></div>
+<div id="SOHUCS" sid="tech-talker/pin"></div>
 <script type="text/javascript">
 (function(){
 var appid = '';
@@ -586,7 +589,7 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/tech-talker/rebuild_with_design_pattern/" id="post_nav-newer" class="prev-content">
+        <a href="/tech-talker/rabbitmq" id="post_nav-newer" class="prev-content">
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
                 <i class="material-icons">arrow_back</i>
             </button>
@@ -600,7 +603,7 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
 
     <!-- Next Nav -->
     
-        <a href="/tech-talker/dist_uuid_gen/" id="post_nav-older" class="next-content">
+        <a href="/self-whisper/origin" id="post_nav-older" class="next-content">
             旧篇
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
