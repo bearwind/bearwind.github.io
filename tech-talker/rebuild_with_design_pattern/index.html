@@ -52,7 +52,7 @@
     
     <title>
         
-            搭建Blog拾遗及相关资料归档 | 
+            项目重构回顾：使用模版、策略、桥接设计模式 | 
         
         It&#39;s me, Bear &amp; Wind.
     </title>
@@ -63,7 +63,7 @@
 
     <meta name="format-detection" content="telephone=no">
     <meta name="description" itemprop="description" content>
-    <meta name="keywords" content=",hexo,blog">
+    <meta name="keywords" content=",java,design-pattern">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -248,7 +248,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="It&#39;s me, Bear &amp; Wind.">
-    <meta name="msapplication-starturl" content="https://www.bearwind.xyz/tech-talker/pin/">
+    <meta name="msapplication-starturl" content="https://www.bearwind.xyz/tech-talker/rebuild_with_design_pattern/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="It&#39;s me, Bear &amp; Wind.">
@@ -263,16 +263,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="https://www.bearwind.xyz/tech-talker/pin/">
+    <meta property="og:url" content="https://www.bearwind.xyz/tech-talker/rebuild_with_design_pattern/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="搭建Blog拾遗及相关资料归档 | It&#39;s me, Bear &amp; Wind.">
+    <meta property="og:title" content="项目重构回顾：使用模版、策略、桥接设计模式 | It&#39;s me, Bear &amp; Wind.">
     <meta property="og:image" content="/img/favicon.png">
     <meta property="og:description" content>
-    <meta property="og:article:tag" content="hexo"> <meta property="og:article:tag" content="blog"> 
+    <meta property="og:article:tag" content="java"> <meta property="og:article:tag" content="design-pattern"> 
 
     
-        <meta property="article:published_time" content="Wed May 30 2018 15:23:00 GMT+0800">
-        <meta property="article:modified_time" content="Mon Jul 08 2019 09:31:10 GMT+0800">
+        <meta property="article:published_time" content="Fri Mar 12 2021 10:25:00 GMT+0800">
+        <meta property="article:modified_time" content="Wed May 19 2021 14:35:55 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -280,7 +280,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://www.bearwind.xyz/tech-talker/pin/index.html">
+        <link rel="canonical" href="https://www.bearwind.xyz/tech-talker/rebuild_with_design_pattern/index.html">
     
 
     <!-- Structured-data for SEO -->
@@ -292,10 +292,10 @@
 {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "mainEntityOfPage": "https://www.bearwind.xyz/tech-talker/pin/index.html",
-    "headline": "搭建Blog拾遗及相关资料归档",
-    "datePublished": "Wed May 30 2018 15:23:00 GMT+0800",
-    "dateModified": "Mon Jul 08 2019 09:31:10 GMT+0800",
+    "mainEntityOfPage": "https://www.bearwind.xyz/tech-talker/rebuild_with_design_pattern/index.html",
+    "headline": "项目重构回顾：使用模版、策略、桥接设计模式",
+    "datePublished": "Fri Mar 12 2021 10:25:00 GMT+0800",
+    "dateModified": "Wed May 19 2021 14:35:55 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "NovaWind",
@@ -313,7 +313,7 @@
             "url": "/img/favicon.png"
         }
     },
-    "keywords": ",hexo,blog",
+    "keywords": ",java,design-pattern",
     "description": "",
 }
 </script>
@@ -378,7 +378,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Node-js"><span class="post-toc-number">1.</span> <span class="post-toc-text">Node.js</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Theme"><span class="post-toc-number">2.</span> <span class="post-toc-text">Theme</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#遇到的问题"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">遇到的问题</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#相关资料归档"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">相关资料归档</span></a></li></ol></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#重构背景"><span class="post-toc-number">1.</span> <span class="post-toc-text">重构背景</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#设计模式"><span class="post-toc-number">2.</span> <span class="post-toc-text">设计模式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#模版模式"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">模版模式</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#策略模式"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">策略模式</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#混合应用"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">混合应用</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#总结"><span class="post-toc-number">3.</span> <span class="post-toc-text">总结</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#重构的简明UML类图"><span class="post-toc-number">4.</span> <span class="post-toc-text">重构的简明UML类图</span></a></li></ol>
     </ul>
     
 
@@ -410,7 +410,7 @@
         
     
             <p class="article-headline-p">
-                搭建Blog拾遗及相关资料归档
+                项目重构回顾：使用模版、策略、桥接设计模式
             </p>
         </div>
 
@@ -429,7 +429,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>NovaWind</strong>
-        <span>5月 30, 2018</span>
+        <span>3月 12, 2021</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -453,7 +453,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/blog/">blog</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/hexo/">hexo</a>
+        <a class="post_tag-link" href="/tags/design-pattern/">design-pattern</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/java/">java</a>
     </li></ul>
     
 
@@ -481,7 +481,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=搭建Blog拾遗及相关资料归档&url=https://www.bearwind.xyz/tech-talker/pin/index.html&pic=https://www.bearwind.xyz/img/favicon.png&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=项目重构回顾：使用模版、策略、桥接设计模式&url=https://www.bearwind.xyz/tech-talker/rebuild_with_design_pattern/index.html&pic=https://www.bearwind.xyz/img/favicon.png&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -515,40 +515,243 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h4 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h4><p>Ubuntu搭建Node.js环境，我只记两点：</p>
+        <h3 id="重构背景"><a href="#重构背景" class="headerlink" title="重构背景"></a>重构背景</h3><blockquote>
+<p>公司某模型项目，按产品接口特点，分为四种属性：产品特性维度<strong>Dimension</strong>、调用方式<strong>CallerType</strong>、模型部署类型<strong>DeployType</strong>，模型编号<strong>ModelNumber</strong>，前两个属性决定了唯一产品接口，后两个属性决定具体产品下模型具体操作。<br>由于该项目设计初期的不完善、快速的需求迭代变更、开发人员信息同步不及时，导致这个项目俨然成为了一座<strong><em>屎山</em></strong>：<br>大量的冗余代码、过度的if-else嵌套等等问题，使得对接新产品、维护旧产品变得异常困难！所以重构势在必行。</p>
+</blockquote>
+<h3 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h3><h4 id="模版模式"><a href="#模版模式" class="headerlink" title="模版模式"></a>模版模式</h4><ul>
+<li>应用点：调用不同模型前，需要处理不同的模型入参，但通过模型DeployType选择模型具体的Executor等是共有功能。因而将共功能形成模版方法(<code>handle()</code>)，将处理入参(<code>deal()</code>)抽离出来暴露给使用者进行自定义。</li>
+</ul>
+<pre><code>/**
+ * 执行者处理器模版接口
+ *
+ * @author Jeremy Xiong&lt;br&gt;
+ * 2021-03-09 10:55
+ */
+public interface ExecutorHandlerTemplate {
+    Logger log = LoggerFactory.getLogger(ExecutorHandlerTemplate.class);
+
+    /**
+     * 执行者处理器模版处理方法
+     *
+     * @param request
+     * @return
+     */
+    default ModelUnionResult handle (ModelUnionRequest request) {
+        // 相关业务代码 pre
+        ExecutorInput input = deal(request); // 需要自定义实现的方法部分
+        // 相关业务代码 post
+        return result;
+    }
+
+    /**
+     * 不同dimension处理入参的方法
+     *
+     * @param request
+     * @return
+     */
+    ExecutorInput deal (ModelUnionRequest request);
+
+}
+
+</code></pre><p>这样使用者只需要关心自己那一部分独特的入参方法就行了：</p>
 <ul>
-<li>官网下载最新node版本<br><a href="https://nodejs.org/en/" target="_blank" rel="noopener">node官网</a></li>
-<li><p>使用npm时出现：</p>
-<pre><code class="shell">Error: /usr/bin/env: node:没有那个文件或目录
-</code></pre>
-<blockquote>
-<p>cause: ubuntu避免包冲突，会将nodejs操作命令改为nodejs，而不是node</p>
-</blockquote>
-<p>执行命令：</p>
-<pre><code class="shell">sudo ln -s /usr/bin/nodejs /usr/bin/node
-</code></pre>
-</li>
+<li>具体实现</li>
 </ul>
-<h4 id="Theme"><a href="#Theme" class="headerlink" title="Theme"></a>Theme</h4><h5 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h5><p>本blog使用的主题为<code>material</code>，也许你可能在执行<code>hexo g</code>的时候可能会遇到如下错误：<br><code>Internal watch failed: watch ENOSPC</code><br>解决办法，执行命令：  </p>
-<pre><code class="shell">echo fs.inotify.max_user_watches=582222 | sudo tee -a /etc/sysctl.conf &amp;&amp; sudo sysctl -p
-</code></pre>
-<p>然后再执行<code>hexo g</code>.</p>
-<h5 id="相关资料归档"><a href="#相关资料归档" class="headerlink" title="相关资料归档"></a>相关资料归档</h5><ul>
-<li><a href="https://github.com/viosey/hexo-theme-material" target="_blank" rel="noopener">material-theme-github</a></li>
-<li><a href="https://neko-dev.github.io/material-theme-docs/#/" target="_blank" rel="noopener">theme-doc</a></li>
-<li><a href="https://material.io/tools/icons/" target="_blank" rel="noopener">icons</a>, 直接复制icon名称到主题<code>_config.yml</code>相应位置中<pre><code class="yaml">pages:
-        关于我:
-            link: &quot;/aboutMe&quot;
-            icon: round-fingerprint-24px.svg
-            divider: false
-</code></pre>
-</li>
-<li>图片压缩，小白玩法： <a href="http://www.yasuotu.com/" target="_blank" rel="noopener">compress-image</a>  </li>
-<li><blockquote>
-<p>感谢教程：<a href="https://my.oschina.net/ryaneLee/blog/638440" target="_blank" rel="noopener">GitHub+Hexo搭建个人Blog</a></p>
-</blockquote>
-</li>
+<pre><code>/**
+ * 卡维度实现
+ *
+ * @author Jeremy Xiong&lt;br&gt;
+ * 2021-03-09 11:47
+ */
+@Handler(Dimension.CARD)
+public class CardExecutorHandlerImpl implements ExecutorHandlerTemplate {
+
+    @Override
+    public ExecutorInput deal (ModelUnionRequest request) {
+        // 具体参数入参方法代码
+        return input;
+    }
+}
+</code></pre><p>通过模版方法，将各种Dimension的冗余代码全部删除，太舒服了…</p>
+<h4 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h4><ul>
+<li>应用点：部署类型DeployType（Docker、DecisionEngine、http、pmml等）具体的executor策略接口</li>
 </ul>
+<pre><code>/**
+ * 模型部署类型执行器策略
+ *
+ * @author Jeremy Xiong&lt;br&gt;
+ * 2021-03-04 20:54
+ */
+public interface IExecutorStrategy {
+
+    ModelUnionResult execute (ExecutorInput input);
+}
+</code></pre><ul>
+<li><p>具体实现示例</p>
+<pre><code>/**
+* @author Jeremy Xiong&lt;br&gt;
+* 2021-03-12 09:57
+*/
+@Executor(DeployType.DOCKER)
+@Slf4j
+public class DockerExecutor implements IExecutorStrategy {
+  @Autowired
+  private DubboService dubboService;
+
+  @Override
+  public ModelUnionResult execute (ExecutorInput input) {
+      // 业务代码
+      IDockerService docker = dubboService.get(IDockerService.class);
+      ModelUnionResult result = docker.execute(input);
+      // 业务代码
+      return result;
+  }
+</code></pre></li>
+<li>调用时，通过spring的特性来注册策略<pre><code>@Autowired
+private ApplicationContext ctx;
+// 注册
+@Bean(Constants.EXECUTOR_STRATEGY)
+  public Map&lt;DeployType, IExecutorStrategy&gt; registerExecutor () {
+      Map&lt;String, IExecutorStrategy&gt; map = ctx.getBeansOfType(IExecutorStrategy.class);
+      Map&lt;DeployType, IExecutorStrategy&gt; strategyMap = new HashMap&lt;&gt;();
+      for (IExecutorStrategy ie : map.values()) {
+          strategyMap.put(key(ie), ie);
+      }
+      return strategyMap;
+  }
+</code></pre></li>
+<li>获取策略<pre><code>// default方法或static方法中
+Map strategyMap = ApplicationContextUtil.getBean(Constants.EXECUTOR_STRATEGY, Map.class);
+IExecutorStrategy executor = (IExecutorStrategy) strategyMap.get(deployType);
+result = executor.execute(input);
+// 注入获取
+@Autowired
+@Qualifier(Constants.EXECUTOR_STRATEGY)
+private Map&lt;DeployType, IExecutorStrategy&gt; strategyMap;
+// ...
+IExecutorStrategy executor = strategyMap.get(deployType);
+result = executor.execute(input);
+</code></pre>通过策略模式，彻底与繁琐的if-else说拜拜！<br><strong><em>当然，在调用模型时，需要根据具体的模型编号调用具体模型，也同样使用了策略模式</em></strong></li>
+</ul>
+<h4 id="混合应用"><a href="#混合应用" class="headerlink" title="混合应用"></a>混合应用</h4><ul>
+<li>应用点：1. 调用类型CallerType，分为同步（SYNC）和异步（ASYNC）,抽象一个调用策略类，然后各自具体实现：</li>
+</ul>
+<pre><code>/**
+ * 调用策略
+ * &lt;p&gt;使用前请注册：{@link CallerStrategyFactory}
+ * @author Jeremy Xiong&lt;br&gt;
+ * 2021-03-09 15:36
+ */
+public abstract class AbstractCallerStrategy {
+    protected final PreHandler preHandler;
+    protected ExecutorHandlerTemplate template;
+
+
+    public AbstractCallerStrategy (PreHandler preHandler) {
+        this.preHandler = preHandler;
+    }
+    public AbstractCallerStrategy (PreHandler preHandler, ExecutorHandlerTemplate template) {
+        this.preHandler = preHandler;
+        this.template = template;
+    }
+    public abstract ModelUnionResponse call (ModelUnionRequest request);
+</code></pre><p>其实可能有人已经注意到，该类既为调用策略CallerType的抽象类，又是<code>Prehandler</code>和<code>ExecutorHandlerTemplate</code>的桥接类。<br>也就是同时运用了策略模式和桥接模式（见下文）。</p>
+<ul>
+<li>同步具体实现示例，使用<strong>策略模式</strong>和<strong>模版模式</strong></li>
+</ul>
+<pre><code>/**
+ * 同步调用策略
+ *
+ * @author Jeremy Xiong&lt;br&gt;
+ * 2021-03-09 20:45
+ */
+@Slf4j
+public class SyncCallerStrategy extends AbstractCallerStrategy {
+
+
+    public SyncCallerStrategy (PreHandler preHandler, ExecutorHandlerTemplate template) {
+        super(preHandler, template);
+    }
+
+    @Override
+    public ModelUnionResponse call (ModelUnionRequest request) {
+        // 业务代码
+        ModelUnionResponse response = preHandler.pre(request); // 模版设计模式，自定义预处理器的pre方法
+        // 业务代码
+        return response;
+    }
+}
+</code></pre><ul>
+<li>预处理器</li>
+</ul>
+<pre><code>/**
+ * 预处理器
+ *
+ * @author Jeremy Xiong&lt;br&gt;
+ * 2021-03-09 20:38
+ */
+public interface PreHandler {
+
+    /**
+     * 预处理：各种行为拼装request
+     *
+     * @param request
+     */
+    ModelUnionResponse pre (ModelUnionRequest request);
+
+</code></pre><ul>
+<li>通过构造函数，spring bean注册，运用<strong>桥接模式</strong>将预处理器（<code>PreHandler</code>）的具体实现和执行器模版（<code>ExecutorHandlerTemplate</code>）的具体实现桥接起来完成调用策略的实现</li>
+</ul>
+<pre><code>/**
+ * 调用策略注册工厂
+ *
+ * @author Jeremy Xiong&lt;br&gt;
+ * 2021-03-10 10:20
+ */
+
+@Configuration
+public class CallerStrategyFactory {
+
+    @Bean(Caller.CARD + Caller.SYNC)
+    public AbstractCallerStrategy cardSyncCallerHandler (CardPreHandlerImpl h, CardExecutorHandlerImpl e) {
+        return new SyncCallerStrategy(h, e);
+    }
+
+    @Bean(Caller.CARD + Caller.ASYNC)
+    public AbstractCallerStrategy cardAsyncCallerHandler (CardPreHandlerImpl h) {
+        return new AsyncCallerStrategy(h);
+    }
+
+    @Bean(Caller.CARDS + Caller.SYNC)
+    public AbstractCallerStrategy cardsSyncCallerHandler (CardsPreHandlerImpl h, CardsExecutorHandlerImpl e) {
+        return new SyncCallerStrategy(h, e);
+    }
+
+    @Bean(Caller.CARDS + Caller.ASYNC)
+    public AbstractCallerStrategy cardsAsyncCallerHandler (CardsPreHandlerImpl h) {
+        return new AsyncCallerStrategy(h);
+    }
+
+    @Bean(Caller.PERSON + Caller.ASYNC)
+    public AbstractCallerStrategy personAsyncCallerHandler (PersonPreHandlerImpl h){
+        return new AsyncCallerStrategy(h);
+    }
+
+    @Bean(Caller.PERSON + Caller.SYNC)
+    public AbstractCallerStrategy personSyncCallerHandler (PersonPreHandlerImpl h, PersonExecutorHandlerImpl e){
+        return new SyncCallerStrategy(h, e);
+    }
+
+    @Bean(Caller.MERCHANTS + Caller.ASYNC)
+    public AbstractCallerStrategy merchantsSyncCallerHandler (MerchantNameHandlerImpl h){
+        return new AsyncCallerStrategy(h);
+    }
+</code></pre><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ol>
+<li>模版模式：抽出公共业务代码，使用者只关注某一块特有的实现</li>
+<li>策略模式：将同一类型策略抽象出来，通过特有的标记获取某一特定策略，实现对扩展开放，对修改关闭</li>
+<li>桥接模式：当多个模块的抽象类或实现需要最终组合成某一完整的功能时，使用桥接模式进行拼装桥接</li>
+</ol>
+<h3 id="重构的简明UML类图"><a href="#重构的简明UML类图" class="headerlink" title="重构的简明UML类图"></a>重构的简明UML类图</h3><p><img src="https://gitee.com/bearwind/image_host/raw/master/2021-03/rebuild-UML.png" alt="UML类图"></p>
 
         
     
@@ -565,7 +768,7 @@
     <!-- 使用 changyan -->
 <div id="changyan-comment">
     <!--PC和WAP自适应版-->
-<div id="SOHUCS" sid="tech-talker/pin/"></div>
+<div id="SOHUCS" sid="tech-talker/rebuild_with_design_pattern/"></div>
 <script type="text/javascript">
 (function(){
 var appid = '';
@@ -589,21 +792,13 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/tech-talker/rabbitmq/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
     
-        <a href="/self-whisper/origin/" id="post_nav-older" class="next-content">
+        <a href="/tech-talker/jwt/" id="post_nav-older" class="next-content">
             旧篇
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
