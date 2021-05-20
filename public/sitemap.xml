@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>https://www.bearwind.xyz/tech-talker/rebuild_with_design_pattern/</loc>
+    
+    <lastmod>2021-05-19</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.bearwind.xyz/tech-talker/rabbitmq/</loc>
+    
+    <lastmod>2021-05-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.bearwind.xyz/tech-talker/jwt/</loc>
+    
+    <lastmod>2021-05-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.bearwind.xyz/self-whisper/origin/</loc>
+    
+    <lastmod>2019-07-15</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.bearwind.xyz/aboutMe/index.html</loc>
+    
+    <lastmod>2019-07-15</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.bearwind.xyz/tags/index.html</loc>
+    
+    <lastmod>2019-07-08</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.bearwind.xyz/timeline/index.html</loc>
+    
+    <lastmod>2019-07-08</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.bearwind.xyz/tech-talker/dist_uuid_gen/</loc>
+    
+    <lastmod>2019-07-08</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.bearwind.xyz/tech-talker/pin/</loc>
+    
+    <lastmod>2019-07-08</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.bearwind.xyz/gallery/gallery.json</loc>
+    
+    <lastmod>2019-07-08</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.bearwind.xyz/gallery/index.html</loc>
+    
+    <lastmod>2019-07-08</lastmod>
+    
+  </url>
+  
+
+  <url>
+    <loc>https://www.bearwind.xyz/</loc>
+    <lastmod>2021-05-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  
+  <url>
+    <loc>https://www.bearwind.xyz/tags/java/</loc>
+    <lastmod>2021-05-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.bearwind.xyz/tags/middle-ware/</loc>
+    <lastmod>2021-05-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.bearwind.xyz/tags/distribution/</loc>
+    <lastmod>2021-05-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.bearwind.xyz/tags/auth/</loc>
+    <lastmod>2021-05-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.bearwind.xyz/tags/me/</loc>
+    <lastmod>2021-05-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.bearwind.xyz/tags/design-pattern/</loc>
+    <lastmod>2021-05-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.bearwind.xyz/tags/hexo/</loc>
+    <lastmod>2021-05-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.bearwind.xyz/tags/blog/</loc>
+    <lastmod>2021-05-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+
+  
+  <url>
+    <loc>https://www.bearwind.xyz/categories/tech-talker/</loc>
+    <lastmod>2021-05-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.bearwind.xyz/categories/self-whisper/</loc>
+    <lastmod>2021-05-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+</urlset>
