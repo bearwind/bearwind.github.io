@@ -52,7 +52,7 @@
     
     <title>
         
-            记一次JWT鉴权问题解决 | 
+            RabbitMq相关 | 
         
         It&#39;s me, Bear &amp; Wind.
     </title>
@@ -63,7 +63,7 @@
 
     <meta name="format-detection" content="telephone=no">
     <meta name="description" itemprop="description" content>
-    <meta name="keywords" content=",middle-ware,auth">
+    <meta name="keywords" content=",java,middle-ware">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -248,7 +248,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="It&#39;s me, Bear &amp; Wind.">
-    <meta name="msapplication-starturl" content="https://www.bearwind.xyz/tech-talker/jwt">
+    <meta name="msapplication-starturl" content="https://www.bearwind.xyz/tech-talker/rabbitmq/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="It&#39;s me, Bear &amp; Wind.">
@@ -263,16 +263,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="https://www.bearwind.xyz/tech-talker/jwt">
+    <meta property="og:url" content="https://www.bearwind.xyz/tech-talker/rabbitmq/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="记一次JWT鉴权问题解决 | It&#39;s me, Bear &amp; Wind.">
+    <meta property="og:title" content="RabbitMq相关 | It&#39;s me, Bear &amp; Wind.">
     <meta property="og:image" content="/img/favicon.png">
     <meta property="og:description" content>
-    <meta property="og:article:tag" content="middle-ware"> <meta property="og:article:tag" content="auth"> 
+    <meta property="og:article:tag" content="java"> <meta property="og:article:tag" content="middle-ware"> 
 
     
-        <meta property="article:published_time" content="Sun May 12 2019 14:25:00 GMT+0800">
-        <meta property="article:modified_time" content="Tue May 18 2021 19:23:38 GMT+0800">
+        <meta property="article:published_time" content="Thu Jun 21 2018 13:25:00 GMT+0800">
+        <meta property="article:modified_time" content="Tue May 18 2021 20:50:57 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -280,7 +280,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://www.bearwind.xyz/tech-talker/jwt">
+        <link rel="canonical" href="https://www.bearwind.xyz/tech-talker/rabbitmq/index.html">
     
 
     <!-- Structured-data for SEO -->
@@ -292,10 +292,10 @@
 {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "mainEntityOfPage": "https://www.bearwind.xyz/tech-talker/jwt",
-    "headline": "记一次JWT鉴权问题解决",
-    "datePublished": "Sun May 12 2019 14:25:00 GMT+0800",
-    "dateModified": "Tue May 18 2021 19:23:38 GMT+0800",
+    "mainEntityOfPage": "https://www.bearwind.xyz/tech-talker/rabbitmq/index.html",
+    "headline": "RabbitMq相关",
+    "datePublished": "Thu Jun 21 2018 13:25:00 GMT+0800",
+    "dateModified": "Tue May 18 2021 20:50:57 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "NovaWind",
@@ -313,7 +313,7 @@
             "url": "/img/favicon.png"
         }
     },
-    "keywords": ",middle-ware,auth",
+    "keywords": ",java,middle-ware",
     "description": "",
 }
 </script>
@@ -378,7 +378,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#问题背景"><span class="post-toc-number">1.</span> <span class="post-toc-text">问题背景</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#问题出现"><span class="post-toc-number">2.</span> <span class="post-toc-text">问题出现</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#问题解决"><span class="post-toc-number">3.</span> <span class="post-toc-text">问题解决</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#方案优化"><span class="post-toc-number">4.</span> <span class="post-toc-text">方案优化</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解决"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">解决</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#功能迭代"><span class="post-toc-number">5.</span> <span class="post-toc-text">功能迭代</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#基本组成"><span class="post-toc-number">1.</span> <span class="post-toc-text">基本组成</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#RabbitMqConfig"><span class="post-toc-number">2.</span> <span class="post-toc-text">RabbitMqConfig</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#延迟队列-delayed-queue"><span class="post-toc-number">3.</span> <span class="post-toc-text">延迟队列 delayed queue</span></a></li></ol>
     </ul>
     
 
@@ -410,7 +410,7 @@
         
     
             <p class="article-headline-p">
-                记一次JWT鉴权问题解决
+                RabbitMq相关
             </p>
         </div>
 
@@ -429,7 +429,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>NovaWind</strong>
-        <span>5月 12, 2019</span>
+        <span>6月 21, 2018</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -453,7 +453,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/auth/">auth</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/middle-ware/">middle-ware</a>
+        <a class="post_tag-link" href="/tags/java/">java</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/middle-ware/">middle-ware</a>
     </li></ul>
     
 
@@ -481,7 +481,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=记一次JWT鉴权问题解决&url=https://www.bearwind.xyz/tech-talker/jwt&pic=https://www.bearwind.xyz/img/favicon.png&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=RabbitMq相关&url=https://www.bearwind.xyz/tech-talker/rabbitmq/index.html&pic=https://www.bearwind.xyz/img/favicon.png&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -515,37 +515,127 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h3 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h3><ol>
-<li>前后端分离项目，采用统一api网关，使用JWT + redis作为鉴权方式；</li>
-<li>用户登录验证通过，颁发JWT，设置JWT过期时间为2h，redis缓存该用户JWT：<code>set(user:${id}, &quot;Bearer ...&quot;)</code>，并设置该key的TTL为7天；将该有效token通过header返回前端</li>
-<li>鉴权过程：<ul>
-<li>在header里获取token（token-A）并解析获取userId等信息从而获取redis key；</li>
-<li>查询redis获取当前用户token：<ul>
-<li>返回为空（redis过期或未登录等），则该token无效，直接拦截；</li>
-<li>返回非空（token-B），则校验token-A与token-B是否相等，不相等则说明token已被更换，直接拦截</li>
-<li>校验token自身过期时间，若已过期（expire &gt; 2h），由于redis存在该token，但在允许刷新时间内（保持登录时间），系统重新颁发新token，用户无感知。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<h3 id="问题出现"><a href="#问题出现" class="headerlink" title="问题出现"></a>问题出现</h3><blockquote>
-<p>某功能页面，渲染的时候会同时调用多个后端接口，一般情况下都是正常的，但偶尔出现渲染一部分数据后会被后端拦截提示未授权，然后跳转登录页。<br>经分析：前端同时调用A、B接口，header中的token为同一个。调用A接口时，token自身正好过期，然后更换为新token，导致调用B接口时由于新旧token不一致被拦截</p>
-</blockquote>
-<h3 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h3><ol>
-<li>当更换新token时，在redis存放一个TTL非常短的（10s或更短）缓存标记，以新旧token为key-value存储的token-flag，<code>set(token-old, token-new)</code>；</li>
-<li>所有接口调用，先校验是否过期，过期则查询1中的token-flag是否存在，存在说明刚刚更换新token，直接放行，无则继续走之前的鉴权过程；</li>
-<li>大致过程：<br>1) 请求A -&gt; token-old过期 -&gt; 颁发新token token-new -&gt; 存储token-flag -&gt; 将token-new放入header返回<br>2) 请求B -&gt; token-old过期 -&gt; 查询token-flag存在 -&gt; 放行（说明在更换新token的保护期内），并将token-flag中的value值token-new放入header返回<br>至此token更换已同步给前端</li>
-</ol>
+        <h3 id="基本组成"><a href="#基本组成" class="headerlink" title="基本组成"></a>基本组成</h3><ul>
+<li><p>图示<br><div id="flowchart-0" class="flow-chart"></div></p>
 <blockquote>
-<p>你以为这样就彻底解决了吗？那就大错特错了！</p>
 </blockquote>
-<h3 id="方案优化"><a href="#方案优化" class="headerlink" title="方案优化"></a>方案优化</h3><p>当token过期时，我们会校验token-flag是否存在，但前端有很多页面都是分模块展示数据，对于这些没有前后调用关系的接口，前端会同时并发调用然后渲染各个模块的数据，提高加载速度、提升用户体验。<br>那么问题就来了：<strong>并发</strong>，老问题户了。<br>当请求并发进来时，A、B请求都发现token-old过期，然后都同时更换新token，存储token-flag，但set操作会覆盖之前的新token出现问题</p>
-<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><p>token过期，使用<code>SETNX</code>设置token-flag，保证只会生成唯一的新token</p>
-<h3 id="功能迭代"><a href="#功能迭代" class="headerlink" title="功能迭代"></a>功能迭代</h3><blockquote>
-<p>业务说需要支持一个账号多个点登录（登录电脑数n &gt;= 2）</p>
-</blockquote>
-<p><strong>满足她！</strong><br>变更token存储的redis数据结构，string -&gt; list，使用<code>RPUSHX</code>存储多个登录端的token，<code>LPOP</code>大于登录数n的旧token，存放新登录端的token，保证list长度小于n.</p>
+<p>其中：<br>channel，信道，虚拟连接概念，通过connection获取，java api中该对象用于创建及操作其他对象，包括定义Queue、定义Exchange、绑定Queue与Exchange、发布msg、msg的ack/nack等处理</p>
+</li>
+<li><p>常用exchange</p>
+<ul>
+<li>direct(routingkey = queueName),</li>
+<li>fanout(分发/广播，绑定在此exchange上的队列，均可收到message),</li>
+<li>topic 正则匹配，<code>routingkey.match(queueName)</code>, eg: <code>nova.*,  nova.wind.#</code></li>
+</ul>
+</li>
+</ul>
+<p>direct(routingkey = queueName),<br>fanout(分发/广播，绑定在此exchange上的队列 均可收到message),<br>topic 正则匹配(routingkey.match(queueName), eg: nova.*,  nova.wind.#)</p>
+<hr>
+<h3 id="RabbitMqConfig"><a href="#RabbitMqConfig" class="headerlink" title="RabbitMqConfig"></a>RabbitMqConfig</h3><ul>
+<li>指定queue、exchange、routingkey，可自动在RabbitMq中创建相应的queue等，并实现绑定</li>
+</ul>
+<pre><code>@Bean(&quot;directQueue&quot;)
+   public Queue directQueue(){
+   return new Queue(rabbitCustomizedProperties.getDirectQueue(), true, false, false);
+}
+
+@Bean
+public DirectExchange directExchange(){
+   return new DirectExchange(rabbitCustomizedProperties.getDirectExchange(), true, false);
+}
+@Bean
+public Binding bind(Queue directQueue, DirectExchange directExchange){
+   return BindingBuilder.bind(directQueue).to(directExchange)
+         .with(rabbitCustomizedProperties.getDirectRoutingkey());
+</code></pre><ul>
+<li>RabbitMq消息序列化：默认是SimpleMessageConverter(jdk)，以下template中指定为Jackson2JsonConverter实现json序列化</li>
+</ul>
+<pre><code>@Bean
+public MessageConverter jackson2JsonConverter(){
+   return new Jackson2JsonMessageConverter();
+}
+@Bean
+public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory, MessageConverter jackson2JsonConverter){
+   RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
+   rabbitTemplate.setMessageConverter(jackson2JsonConverter);
+   return rabbitTemplate;
+}
+</code></pre><ul>
+<li>consumer<ul>
+<li>注解: <code>@RabbitListener(queues= &quot;queueName&quot;),   @RabbitHandler</code></li>
+<li>实现接口 <code>MessageListener</code>， 实现<code>onMessage(Message message)</code>方法<br>or 实现接口 <code>ChannelAwareMessageListener</code>， 实现<code>onMessage (Message message, Channel channel)</code>方法，此接口可以根据channel实现手动ack/nack</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="延迟队列-delayed-queue"><a href="#延迟队列-delayed-queue" class="headerlink" title="延迟队列 delayed queue"></a>延迟队列 delayed queue</h3><ul>
+<li>基本设置<ul>
+<li>队列上设置TTL<br><img src="https://gitee.com/bearwind/image_host/raw/master/2018-06/delay_queue.png" alt="延迟队列"></li>
+<li>message设置TTL<br><code>setExpiration(300000)</code></li>
+<li>指定死信交换器 DLX(DeadLetterExchange)，当消息变为死信(DL)时，自动publish到一个DLX里进行相关处理，internal设置为no， 否则消息无法消费，仅用于exchange间的绑定。<br><img src="https://gitee.com/bearwind/image_host/raw/master/2018-06/delay_ex.png" alt="死信交换器"></li>
+</ul>
+</li>
+<li><p>应用场景简述<br>淘宝下订单，producer发消息至 delayedQueue(A)， 队列过期时间30m，30m后过期转发至isPaidQueue(B)</p>
+<ol>
+<li>客户已支付，consumer消费queue B消息，判断该订单状态为paid，不做处理；</li>
+<li><p>客户未支付，consumer消费 queue B消息，判断该订单状态为unpaid，则将该订单取消，库存恢复。</p>
+<div id="flowchart-1" class="flow-chart"></div></li>
+</ol>
+</li>
+<li>process<br> <img src="https://gitee.com/bearwind/image_host/raw/master/2018-06/delay-ex-process.png" alt="死信-process"></li>
+<li>code</li>
+</ul>
+<pre><code>//delay queue
+@Bean
+public DirectExchange delayExchange(){
+   return new DirectExchange(rcps.getDelayExchange(),true, false);
+}
+@Bean
+public Queue delayQueue(){
+   Map&lt;String, Object&gt; args = new HashMap&lt;&gt;();
+   args.put(&quot;x-dead-letter-exchange&quot;, rcps.getDeadLetterExchange());
+   args.put(&quot;x-dead-letter-routing-key&quot;, rcps.getDelayRoutingkey());
+   //message过期时间
+   args.put(&quot;x-message-ttl&quot;, rcps.getTimeToLive());
+   //args.put(&quot;x-expires&quot;,1000); 队列过期时间
+   return new Queue(rcps.getDelayQueue(), true, false, false, args);
+}
+@Bean
+public Binding bindDelay(DirectExchange delayExchange, Queue delayQueue){
+
+   return BindingBuilder.bind(delayQueue).to(delayExchange).with(rcps.getDelayRoutingkey());
+}
+
+@Bean
+public DirectExchange dlx(){
+   return new DirectExchange(rcps.getDeadLetterExchange(),true, false);
+}
+@Bean
+public Queue dlQueue(){
+   return new Queue(rcps.getDeadLetterQueue(), true);
+}
+
+@Bean
+public Binding bindDl(DirectExchange dlx, Queue dlQueue){
+   //with delay routingkey 需与延迟队列key保持一致 否则无法接收到死信 或不指定 默认一致
+   return BindingBuilder.bind(dlQueue).to(dlx).with(rcps.getDelayRoutingkey());
+</code></pre><p><script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script><textarea id="flowchart-0-code" style="display: none">cf=>start: ConnectionFactory
+conn=>operation: Connection
+c=>operation: Channel
+broker=>operation: Broker
+io=>inputoutput: consist of: exchange, routingkey, queue
+bd=>subroutine: bindings
+cf->conn->c->broker(right)->io(bottom)->bd</textarea><textarea id="flowchart-0-options" style="display: none">{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-0-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-0", options);</script><textarea id="flowchart-1-code" style="display: none">    repo=>start: 库存
+    order=>operation: 下单
+    prod=>operation: producer
+    QA=>subroutine: delayedQueue A (30m 过期)
+    QB=>subroutine: isPaidQueue B
+    paidOrNot=>condition: is paid or not?
+    io=>inputoutput: 未支付，入库存
+    e=>end
+    repo->order->prod()->QA->QB(right)->paidOrNot
+    paidOrNot(yes)->e
+    paidOrNot(no)->io(right)->order</textarea><textarea id="flowchart-1-options" style="display: none">{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-1-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-1-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-1", options);</script></p>
 
         
     
@@ -562,7 +652,7 @@
     <!-- 使用 changyan -->
 <div id="changyan-comment">
     <!--PC和WAP自适应版-->
-<div id="SOHUCS" sid="tech-talker/jwt"></div>
+<div id="SOHUCS" sid="tech-talker/rabbitmq/"></div>
 <script type="text/javascript">
 (function(){
 var appid = '';
@@ -586,7 +676,7 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/tech-talker/rebuild_with_design_pattern" id="post_nav-newer" class="prev-content">
+        <a href="/tech-talker/dist_uuid_gen/" id="post_nav-newer" class="prev-content">
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
                 <i class="material-icons">arrow_back</i>
             </button>
@@ -600,7 +690,7 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
 
     <!-- Next Nav -->
     
-        <a href="/tech-talker/dist_uuid_gen" id="post_nav-older" class="next-content">
+        <a href="/tech-talker/pin/" id="post_nav-older" class="next-content">
             旧篇
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
