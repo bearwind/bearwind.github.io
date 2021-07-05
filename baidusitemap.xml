@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://www.bearwind.xyz/%E8%B0%88%E6%8A%80%E8%BD%AE%E6%9C%AF/spring-tx/</loc>
+    <lastmod>2021-07-05</lastmod>
+  </url>
+  <url>
     <loc>https://www.bearwind.xyz/tech-talker/dist_uuid_gen/</loc>
-    <lastmod>2021-06-22</lastmod>
+    <lastmod>2021-07-05</lastmod>
   </url>
   <url>
     <loc>https://www.bearwind.xyz/wave-fighter/oom/</loc>

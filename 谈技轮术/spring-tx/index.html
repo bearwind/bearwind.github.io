@@ -52,7 +52,7 @@
     
     <title>
         
-            timeline | 
+            spring多线程事务小记 | 
         
         It&#39;s me, Bear &amp; Wind.
     </title>
@@ -63,7 +63,7 @@
 
     <meta name="format-detection" content="telephone=no">
     <meta name="description" itemprop="description" content>
-    <meta name="keywords" content>
+    <meta name="keywords" content=",spring,transaction">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -90,6 +90,9 @@
         <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","https://cdn.jsdelivr.net/gh/viosey/hexo-theme-material@latest/source//css/style.min.css",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
+            
+                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","https://cdn.jsdelivr.net/gh/viosey/hexo-theme-material@latest/source//css/prettify.min.css",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","https://cdn.jsdelivr.net/gh/viosey/hexo-theme-material@latest/source//css/prettify/tomorrow-night-eighties.min.css",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
             
         
 
@@ -245,7 +248,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="It&#39;s me, Bear &amp; Wind.">
-    <meta name="msapplication-starturl" content="https://www.bearwind.xyz/timeline/">
+    <meta name="msapplication-starturl" content="https://www.bearwind.xyz/谈技轮术/spring-tx/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="It&#39;s me, Bear &amp; Wind.">
@@ -260,13 +263,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="https://www.bearwind.xyz/timeline/">
+    <meta property="og:url" content="https://www.bearwind.xyz/谈技轮术/spring-tx/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="timeline | It&#39;s me, Bear &amp; Wind.">
+    <meta property="og:title" content="spring多线程事务小记 | It&#39;s me, Bear &amp; Wind.">
     <meta property="og:image" content="/img/favicon.png">
     <meta property="og:description" content>
-    
+    <meta property="og:article:tag" content="spring"> <meta property="og:article:tag" content="transaction"> 
 
+    
+        <meta property="article:published_time" content="Thu Mar 25 2021 16:50:00 GMT+0800">
+        <meta property="article:modified_time" content="Mon Jul 05 2021 14:20:21 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -274,13 +280,43 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://www.bearwind.xyz/timeline/index.html">
+        <link rel="canonical" href="https://www.bearwind.xyz/谈技轮术/spring-tx/index.html">
     
 
     <!-- Structured-data for SEO -->
     
         
 
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "https://www.bearwind.xyz/谈技轮术/spring-tx/index.html",
+    "headline": "spring多线程事务小记",
+    "datePublished": "Thu Mar 25 2021 16:50:00 GMT+0800",
+    "dateModified": "Mon Jul 05 2021 14:20:21 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "NovaWind",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar.png"
+        },
+        "description": "<span style="font-style:italic;font-weight:bolder;">Nova, born to shine!</span>,<span style="font-style:italic;font-weight:bolder;">Wind, born to blow!</span>"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "It&#39;s me, Bear &amp; Wind.",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
+    },
+    "keywords": ",spring,transaction",
+    "description": "",
+}
+</script>
 
 
     
@@ -316,612 +352,325 @@
 
                     <!-- Post TOC -->
 
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#问题背景"><span class="post-toc-number">1.</span> <span class="post-toc-text">问题背景</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#问题探讨"><span class="post-toc-number">2.</span> <span class="post-toc-text">问题探讨</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#问题解决"><span class="post-toc-number">3.</span> <span class="post-toc-text">问题解决</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#手动回滚"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">手动回滚</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关于spring事务失效场景"><span class="post-toc-number">4.</span> <span class="post-toc-text">关于spring事务失效场景</span></a></li></ol>
+    </ul>
+    
+
+
+
 
 <!-- Layouts -->
 
-    <!-- Single Timeline Page -->
-    <style>
-	.md-container {
-		width: 90%;
-		max-width: 1170px;
-		margin: 0 auto;
-	}
-	.md-container::after {
-		content: '';
-		display: table;
-		clear: both;
-	}
-	#md-timeline {
-		position: relative;
-		padding: 2em 0;
-		margin-top: 2em;
-		margin-bottom: 2em;
-	}
-	@media screen and (max-device-width:480px){
-		#md-timeline {
-			margin-top: 6em;
-		}
-	}
-	#md-timeline::before {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 18px;
-		height: 100%;
-		width: 2px;
-		background: #d7e4ed;
-	}
-	.md-timeline-title {
-		font-size: 20px;
-		line-height: 24px;
-	}
-	.md-timeline-content a {
-		text-decoration: none;
-	}
-	.md-timeline-info {
-		height: 20px;
-		width: 100%;
-		margin: 10px 0px;
-	}
-	.md-timeline-info-span {
-		float: right;
-		margin-right: 10px;
-		text-align: right;
-	}
-	.md-timeline-excerpt {
-	    	clear: right; 
-	}
-	@media only screen and (min-width: 1170px) {
-		#md-timeline {
-			margin-top: 3em;
-			margin-bottom: 3em;
-		}
-		#md-timeline::before {
-			left: 50%;
-			margin-left: -2px;
-		}
-	}
-	.md-timeline-block {
-		position: relative;
-		margin: 2em 0;
-	}
-	.md-timeline-block:after {
-		content: "";
-		display: table;
-		clear: both;
-	}
-	.md-timeline-block:first-child {
-		margin-top: 0;
-	}
-	.md-timeline-block:last-child {
-		margin-bottom: 0;
-	}
-	@media only screen and (min-width: 1170px) {
-		.md-timeline-block {
-			margin: 4em 0;
-		}
-		.md-timeline-block:first-child {
-			margin-top: 0;
-		}
-		.md-timeline-block:last-child {
-			margin-bottom: 0;
-		}
-	}
-	.md-timeline-date {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 60px;
-		height: 40px;
-		border-radius: box-shadow: 0 0 0 4px white, inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
-	}
-	.md-timeline-date.blue {
-		background: #0D395F;
-		-webkit-box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.75);
-		-moz-box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.75);
-		box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.75);
-	}
-	@media only screen and (min-width: 1170px) {
-		.md-timeline-date {
-			width: 60px;
-			height: 60px;
-			left: 50%;
-			margin-left: -30px;
-			/* Force Hardware Acceleration in WebKit */
-			-webkit-transform: translateZ(0);
-			-webkit-backface-visibility: hidden;
-		}
-		.cssanimations .md-timeline-date.is-hidden {
-			visibility: hidden;
-		}
-		.cssanimations .md-timeline-date.bounce-in {
-			visibility: visible;
-			-webkit-animation: md-bounce-1 0.6s;
-			-moz-animation: md-bounce-1 0.6s;
-			animation: md-bounce-1 0.6s;
-		}
-	}
-	@-webkit-keyframes md-bounce-1 {
-		0% {
-			opacity: 0;
-			-webkit-transform: scale(0.5);
-		}
-		60% {
-			opacity: 1;
-			-webkit-transform: scale(1.2);
-		}
-		100% {
-			-webkit-transform: scale(1);
-		}
-	}
-	@-moz-keyframes md-bounce-1 {
-		0% {
-			opacity: 0;
-			-moz-transform: scale(0.5);
-		}
-		60% {
-			opacity: 1;
-			-moz-transform: scale(1.2);
-		}
-		100% {
-			-moz-transform: scale(1);
-		}
-	}
-	@keyframes md-bounce-1 {
-		0% {
-			opacity: 0;
-			-webkit-transform: scale(0.5);
-			-moz-transform: scale(0.5);
-			-ms-transform: scale(0.5);
-			-o-transform: scale(0.5);
-			transform: scale(0.5);
-		}
-		60% {
-			opacity: 1;
-			-webkit-transform: scale(1.2);
-			-moz-transform: scale(1.2);
-			-ms-transform: scale(1.2);
-			-o-transform: scale(1.2);
-			transform: scale(1.2);
-		}
-		100% {
-			-webkit-transform: scale(1);
-			-moz-transform: scale(1);
-			-ms-transform: scale(1);
-			-o-transform: scale(1);
-			transform: scale(1);
-		}
-	}
-	.md-timeline-content {
-		position: relative;
-		margin-left: 60px;
-		background: white;
-		padding: 1em;
-		-webkit-box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.75);
-		-moz-box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.75);
-		box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.75);
-	}
-	.md-timeline-content:after {
-		content: "";
-		display: table;
-		clear: both;
-	}
-	.md-timeline-content h2 {
-		color: #303e49;
-	}
-	.md-timeline-content p, .md-timeline-content .md-read-more, .md-timeline-content .md-date {
-		font-size: 13px;
-		font-size: 0.8125rem;
-	}
-	.md-timeline-content .md-read-more, .md-timeline-content .md-date {
-		display: inline-block;
-	}
-	.md-timeline-content p {
-		margin: 1em 0;
-		line-height: 1.6;
-	}
-	.md-timeline-content .md-read-more {
-		float: right;
-		padding: .8em 1em;
-		background: #acb7c0;
-		color: white;
-		border-radius: 0.25em;
-	}
-	.md-date {
-		color: white;
-		text-align: center;
-	}
-	.no-touch .md-timeline-content .md-read-more:hover {
-		background-color: #bac4cb;
-	}
-	.md-timeline-content::before {
-		content: '';
-		position: absolute;
-		top: 16px;
-		right: 100%;
-		height: 0;
-		width: 0;
-		border: 7px solid transparent;
-		border-right: 7px solid white;
-	}
-	@media only screen and (min-width: 768px) {
-		.md-timeline-content h2 {
-			font-size: 20px;
-			font-size: 1.25rem;
-		}
-		.md-timeline-content p {
-			font-size: 16px;
-			font-size: 1rem;
-		}
-		.md-timeline-content .md-read-more {
-			font-size: 14px;
-			font-size: 0.875rem;
-		}
-	}
-	@media only screen and (min-width: 1170px) {
-		.md-date {
-			text-align: center;
-			margin-top: 10px;
-			line-height: 20px;
-		}
-		.md-timeline-content {
-			margin-left: 0;
-			padding: 1.6em;
-			width: 45%;
-		}
-		.md-timeline-content::before {
-			top: 24px;
-			left: 100%;
-			border-color: transparent;
-			border-left-color: white;
-		}
-		.md-timeline-content .md-read-more {
-			float: left;
-		}
-		.md-timeline-block:nth-child(even) .md-timeline-content {
-			float: right;
-		}
-		.md-timeline-block:nth-child(even) .md-timeline-content::before {
-			top: 24px;
-			left: auto;
-			right: 100%;
-			border-color: transparent;
-			border-right-color: white;
-		}
-		.md-timeline-block:nth-child(even) .md-timeline-content .md-read-more {
-			float: right;
-		}
-		.cssanimations .md-timeline-content.is-hidden {
-			visibility: hidden;
-		}
-		.cssanimations .md-timeline-content.bounce-in {
-			visibility: visible;
-			-webkit-animation: md-bounce-2 0.6s;
-			-moz-animation: md-bounce-2 0.6s;
-			animation: md-bounce-2 0.6s;
-		}
-	}
-	@media only screen and (min-width: 1170px) {
-		/* inverse bounce effect on even content blocks */
-		.cssanimations .md-timeline-block:nth-child(even) .md-timeline-content.bounce-in {
-			-webkit-animation: md-bounce-2-inverse 0.6s;
-			-moz-animation: md-bounce-2-inverse 0.6s;
-			animation: md-bounce-2-inverse 0.6s;
-		}
-	}
-	@-webkit-keyframes md-bounce-2 {
-		0% {
-			opacity: 0;
-			-webkit-transform: translateX(-100px);
-		}
-		60% {
-			opacity: 1;
-			-webkit-transform: translateX(20px);
-		}
-		100% {
-			-webkit-transform: translateX(0);
-		}
-	}
-	@-moz-keyframes md-bounce-2 {
-		0% {
-			opacity: 0;
-			-moz-transform: translateX(-100px);
-		}
-		60% {
-			opacity: 1;
-			-moz-transform: translateX(20px);
-		}
-		100% {
-			-moz-transform: translateX(0);
-		}
-	}
-	@keyframes md-bounce-2 {
-		0% {
-			opacity: 0;
-			-webkit-transform: translateX(-100px);
-			-moz-transform: translateX(-100px);
-			-ms-transform: translateX(-100px);
-			-o-transform: translateX(-100px);
-			transform: translateX(-100px);
-		}
-		60% {
-			opacity: 1;
-			-webkit-transform: translateX(20px);
-			-moz-transform: translateX(20px);
-			-ms-transform: translateX(20px);
-			-o-transform: translateX(20px);
-			transform: translateX(20px);
-		}
-		100% {
-			-webkit-transform: translateX(0);
-			-moz-transform: translateX(0);
-			-ms-transform: translateX(0);
-			-o-transform: translateX(0);
-			transform: translateX(0);
-		}
-	}
-	@-webkit-keyframes md-bounce-2-inverse {
-		0% {
-			opacity: 0;
-			-webkit-transform: translateX(100px);
-		}
-		60% {
-			opacity: 1;
-			-webkit-transform: translateX(-20px);
-		}
-		100% {
-			-webkit-transform: translateX(0);
-		}
-	}
-	@-moz-keyframes md-bounce-2-inverse {
-		0% {
-			opacity: 0;
-			-moz-transform: translateX(100px);
-		}
-		60% {
-			opacity: 1;
-			-moz-transform: translateX(-20px);
-		}
-		100% {
-			-moz-transform: translateX(0);
-		}
-	}
-	@keyframes md-bounce-2-inverse {
-		0% {
-			opacity: 0;
-			-webkit-transform: translateX(100px);
-			-moz-transform: translateX(100px);
-			-ms-transform: translateX(100px);
-			-o-transform: translateX(100px);
-			transform: translateX(100px);
-		}
-		60% {
-			opacity: 1;
-			-webkit-transform: translateX(-20px);
-			-moz-transform: translateX(-20px);
-			-ms-transform: translateX(-20px);
-			-o-transform: translateX(-20px);
-			transform: translateX(-20px);
-		}
-		100% {
-			-webkit-transform: translateX(0);
-			-moz-transform: translateX(0);
-			-ms-transform: translateX(0);
-			-o-transform: translateX(0);
-			transform: translateX(0);
-		}
-	}
-</style>
+    <!-- Post Module -->
+    <div class="material-post_container">
 
-<section id="md-timeline" class="md-container">
-   	   		
-			<div class="md-timeline-block">
-                		<div class="md-timeline-date blue">
-                   			<div class="md-date">3月 25 2021</div>
-                		</div>
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
 
-                		<div class="md-timeline-content">
-                    			<div class="md-timeline-title"><a href="/谈技轮术/spring-tx/">spring多线程事务小记</a></div>
-					<div class="md-timeline-info">
-						<span class="md-timeline-info-span">Categories:
-							<a class="category-link" href="/categories/谈技轮术/">谈技轮术</a>
-						</span>
-						<span class="md-timeline-info-span">Tags:
-							<a class="tag-link" href="/tags/spring/">spring</a>, <a class="tag-link" href="/tags/transaction/">transaction</a>
-						</span>
-						
-					</div>
-					<p class="md-timeline-excerpt">
-						
-							问题背景
-						...
-					</p>
-                    		</div>
-			</div>	
-   		
-			<div class="md-timeline-block">
-                		<div class="md-timeline-date blue">
-                   			<div class="md-date">3月 12 2021</div>
-                		</div>
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
 
-                		<div class="md-timeline-content">
-                    			<div class="md-timeline-title"><a href="/tech-talker/rebuild_with_design_pattern/">项目重构回顾：使用模版、策略、桥接设计模式</a></div>
-					<div class="md-timeline-info">
-						<span class="md-timeline-info-span">Categories:
-							<a class="category-link" href="/categories/tech-talker/">谈技论术</a>
-						</span>
-						<span class="md-timeline-info-span">Tags:
-							<a class="tag-link" href="/tags/design-pattern/">design-pattern</a>, <a class="tag-link" href="/tags/java/">java</a>
-						</span>
-						
-					</div>
-					<p class="md-timeline-excerpt">
-						
-							重构背景
-						...
-					</p>
-                    		</div>
-			</div>	
-   		
-			<div class="md-timeline-block">
-                		<div class="md-timeline-date blue">
-                   			<div class="md-date">1月 26 2021</div>
-                		</div>
-
-                		<div class="md-timeline-content">
-                    			<div class="md-timeline-title"><a href="/wave-fighter/oom/">记一次生产OOM事故排查</a></div>
-					<div class="md-timeline-info">
-						<span class="md-timeline-info-span">Categories:
-							<a class="category-link" href="/categories/wave-fighter/">研海搏浪</a>
-						</span>
-						<span class="md-timeline-info-span">Tags:
-							<a class="tag-link" href="/tags/java/">java</a>, <a class="tag-link" href="/tags/jvm/">jvm</a>
-						</span>
-						
-					</div>
-					<p class="md-timeline-excerpt">
-						
-							事故背景
-						...
-					</p>
-                    		</div>
-			</div>	
-   		
-			<div class="md-timeline-block">
-                		<div class="md-timeline-date blue">
-                   			<div class="md-date">5月 12 2019</div>
-                		</div>
-
-                		<div class="md-timeline-content">
-                    			<div class="md-timeline-title"><a href="/tech-talker/jwt/">记一次JWT鉴权问题解决</a></div>
-					<div class="md-timeline-info">
-						<span class="md-timeline-info-span">Categories:
-							<a class="category-link" href="/categories/tech-talker/">谈技论术</a>
-						</span>
-						<span class="md-timeline-info-span">Tags:
-							<a class="tag-link" href="/tags/auth/">auth</a>, <a class="tag-link" href="/tags/middle-ware/">middle-ware</a>
-						</span>
-						
-					</div>
-					<p class="md-timeline-excerpt">
-						
-							问题背景
-						...
-					</p>
-                    		</div>
-			</div>	
-   		
-			<div class="md-timeline-block">
-                		<div class="md-timeline-date blue">
-                   			<div class="md-date">8月 25 2018</div>
-                		</div>
-
-                		<div class="md-timeline-content">
-                    			<div class="md-timeline-title"><a href="/tech-talker/dist_uuid_gen/">分布式环境下的UUID生成策略</a></div>
-					<div class="md-timeline-info">
-						<span class="md-timeline-info-span">Categories:
-							<a class="category-link" href="/categories/tech-talker/">谈技论术</a>
-						</span>
-						<span class="md-timeline-info-span">Tags:
-							<a class="tag-link" href="/tags/distribution/">distribution</a>, <a class="tag-link" href="/tags/java/">java</a>, <a class="tag-link" href="/tags/middle-ware/">middle-ware</a>
-						</span>
-						
-					</div>
-					<p class="md-timeline-excerpt">
-						
-							0 前...
-						...
-					</p>
-                    		</div>
-			</div>	
-   		
-			<div class="md-timeline-block">
-                		<div class="md-timeline-date blue">
-                   			<div class="md-date">6月 21 2018</div>
-                		</div>
-
-                		<div class="md-timeline-content">
-                    			<div class="md-timeline-title"><a href="/tech-talker/rabbitmq/">RabbitMq相关</a></div>
-					<div class="md-timeline-info">
-						<span class="md-timeline-info-span">Categories:
-							<a class="category-link" href="/categories/tech-talker/">谈技论术</a>
-						</span>
-						<span class="md-timeline-info-span">Tags:
-							<a class="tag-link" href="/tags/java/">java</a>, <a class="tag-link" href="/tags/middle-ware/">middle-ware</a>
-						</span>
-						
-					</div>
-					<p class="md-timeline-excerpt">
-						
-							基本组成
-						...
-					</p>
-                    		</div>
-			</div>	
-   		
-			<div class="md-timeline-block">
-                		<div class="md-timeline-date blue">
-                   			<div class="md-date">5月 30 2018</div>
-                		</div>
-
-                		<div class="md-timeline-content">
-                    			<div class="md-timeline-title"><a href="/tech-talker/pin/">搭建Blog拾遗及相关资料归档</a></div>
-					<div class="md-timeline-info">
-						<span class="md-timeline-info-span">Categories:
-							<a class="category-link" href="/categories/tech-talker/">谈技论术</a>
-						</span>
-						<span class="md-timeline-info-span">Tags:
-							<a class="tag-link" href="/tags/blog/">blog</a>, <a class="tag-link" href="/tags/hexo/">hexo</a>
-						</span>
-						
-					</div>
-					<p class="md-timeline-excerpt">
-						
-							No...
-						...
-					</p>
-                    		</div>
-			</div>	
-   		
-			<div class="md-timeline-block">
-                		<div class="md-timeline-date blue">
-                   			<div class="md-date">5月 29 2018</div>
-                		</div>
-
-                		<div class="md-timeline-content">
-                    			<div class="md-timeline-title"><a href="/self-whisper/origin/">诞生</a></div>
-					<div class="md-timeline-info">
-						<span class="md-timeline-info-span">Categories:
-							<a class="category-link" href="/categories/self-whisper/">自言自语</a>
-						</span>
-						<span class="md-timeline-info-span">Tags:
-							<a class="tag-link" href="/tags/me/">me</a>
-						</span>
-						
-					</div>
-					<p class="md-timeline-excerpt">
-						
-							前言
-						...
-					</p>
-                    		</div>
-			</div>	
-   			   	  		
-   	</section>
-
-<script type="text/ls-javascript" id="page-timeline-script">
-    var adjustFooter = function() {
-        if( ($('#bottom').offset().top + $('#bottom').outerHeight() )<$(window).height() ) {
-            var footerBottom = $(window).height() - $('#bottom').outerHeight() - $('#bottom').offset().top;
-            $('#bottom').css('bottom', '-' + footerBottom + 'px');
-        }
-    };
-    $(document).ready(function() {
-        adjustFooter();
-    });
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').addClass('lazy');
 </script>
 
+        
+    
+            <p class="article-headline-p">
+                spring多线程事务小记
+            </p>
+        </div>
 
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar">
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>NovaWind</strong>
+        <span>3月 25, 2021</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/spring/">spring</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/transaction/">transaction</a>
+    </li></ul>
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+        
+            <!-- Busuanzi Views -->
+            <a class="post_share-link" href="#">
+                <li class="mdl-menu__item">
+                    <span id="busuanzi_container_page_pv">
+                        <span id="busuanzi_value_page_pv"></span>&nbsp;浏览量
+                    </span>
+                </li>
+            </a>
+        
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=spring多线程事务小记&url=https://www.bearwind.xyz/谈技轮术/spring-tx/index.html&pic=https://www.bearwind.xyz/img/favicon.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+
+    <!-- Share Facebook -->
+    
+
+    <!-- Share Google+ -->
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+    
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <h3 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h3><blockquote>
+<p>定时批处理任务，需要执行大量客户账单，为提升效率，减少DB占用时间，从而采用多线程方式执行任务。主线程任务执行与子线程任务需要保证在一个事务中，完成原子性任务操作。但实际情况是，即使写两个独立service（由于AOP代理，方法内部调用不走代理），并且分别加上<code>@Transactional</code>，只能保证各自的线程事务生效，无法做到全局事务。</p>
+</blockquote>
+<h3 id="问题探讨"><a href="#问题探讨" class="headerlink" title="问题探讨"></a>问题探讨</h3><blockquote>
+<p>通过源码可看到：<strong><em>code copied from “org.springframework.transaction.interceptor.TransactionAspectSupport”</em></strong></p>
+</blockquote>
+<pre><code>/**
+ * Holder to support the {@code currentTransactionStatus()} method,
+ * and to support communication between different cooperating advices
+ * (e.g. before and after advice) if the aspect involves more than a
+ * single method (as will be the case for around advice).
+ */
+private static final ThreadLocal&lt;TransactionInfo&gt; transactionInfoHolder =
+        new NamedThreadLocal&lt;TransactionInfo&gt;(&quot;Current aspect-driven transaction&quot;);
+
+
+/**
+ * Opaque object used to hold Transaction information. Subclasses
+ * must pass it back to methods on this class, but not see its internals.
+ */
+protected final class TransactionInfo {
+
+    private final PlatformTransactionManager transactionManager;
+
+    private final TransactionAttribute transactionAttribute;
+
+    private final String joinpointIdentification;
+
+    private TransactionStatus transactionStatus;
+
+    private TransactionInfo oldTransactionInfo;
+
+    public TransactionInfo(PlatformTransactionManager transactionManager,
+            TransactionAttribute transactionAttribute, String joinpointIdentification) {
+
+        this.transactionManager = transactionManager;
+        this.transactionAttribute = transactionAttribute;
+        this.joinpointIdentification = joinpointIdentification;
+    }
+</code></pre><p>事务信息<code>TransactionInfo</code>，在线程间是通过<code>ThreadLocal</code>进行隔离，每个线程存储自己的副本，因而事务在线程间不共享，所以即使加了<code>@Transactional</code>，也不会使线程间共享一个事务。即：<br>serviceA主线程方法加<code>@Transactional</code>，serviceB子线程方法加<code>@Transactional</code>，子线程异常会回滚自己，但主线程无法感知，所以非异常不会回滚，导致主线程和子线程事务不一致。</p>
+<h3 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h3><h4 id="手动回滚"><a href="#手动回滚" class="headerlink" title="手动回滚"></a>手动回滚</h4><p>通过thread的<code>setUncaughtExceptionHandler</code>，设置未捕获异常处理，然后通过标记，在主线程进行手动回滚</p>
+<pre><code>// 主线程方法
+// 用于标记子线程异常
+private volatile boolean flag = false;
+// ...省略
+@Transactional
+    public void first () {
+        StockIndex s = new StockIndex();
+        s.setStockId(&quot;123&quot;);
+        s.setStockType(2);
+        s.setAccessDate(new Date());
+        sim.insertSelective(s);
+
+        Thread t = new Thread(() -&gt; {
+            testTx2.second();
+        });
+
+        t.setUncaughtExceptionHandler((th, e) -&gt; {
+            System.out.println(&quot;uncaunght&quot;);
+            flag = true;
+        });
+        t.start();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        //throw new RuntimeException(&quot;stop!&quot;);
+
+        if (flag) {
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+        }
+    }
+    // 子线程方法
+    @Transactional
+    public void second () {
+        StockIndex s = new StockIndex();
+        s.setStockId(&quot;1234&quot;);
+        s.setStockType(1);
+        s.setAccessDate(new Date());
+        sim.insertSelective(s);
+        throw new RuntimeException(&quot;!!!&quot;);
+    }
+    // 调用
+    @Test
+    public void testTx () {
+        testTx.first();
+    }
+</code></pre><h3 id="关于spring事务失效场景"><a href="#关于spring事务失效场景" class="headerlink" title="关于spring事务失效场景"></a>关于spring事务失效场景</h3><ul>
+<li>service里方法内部调用，由于内部调用不走代理；</li>
+<li>多线程事务，各自事务相互独立；</li>
+<li><code>@Transactional</code>加载了接口方法上，由于该注解不支持接口级别的继承，源于jdk元注解：<blockquote>
+<p><strong><em>copied from java.lang.annotation.Inherited</em></strong><br>Note also that this meta-annotation only causes annotations to be inherited<br>from superclasses; annotations on implemented interfaces have no effect.</p>
+</blockquote>
+</li>
+<li>加注解的方法，非public，导致代理无法生效</li>
+<li>…</li>
+</ul>
+
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 changyan -->
+<div id="changyan-comment">
+    <!--PC和WAP自适应版-->
+<div id="SOHUCS" sid="谈技轮术/spring-tx/"></div>
+<script type="text/javascript">
+(function(){
+var appid = '';
+var conf = '';
+var width = window.innerWidth || document.documentElement.clientWidth;
+if (width < 960) {
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+
+</div>
+<style>
+    #changyan-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/tech-talker/rebuild_with_design_pattern/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
 
 
 
@@ -1146,6 +895,14 @@ It will not impact the appearance and can give developers a lot of support :)
                     
 
                     
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
 
                     <!--Footer-->
 <footer class="mdl-mini-footer" id="bottom">
@@ -1302,6 +1059,10 @@ It will not impact the appearance and can give developers a lot of support :)
 <!-- Import prettify js  -->
 
     
+        
+            <script>lsloader.load("prettify_js","https://cdn.jsdelivr.net/gh/viosey/hexo-theme-material@latest/source//js/prettify.min.js", true)</script>
+        
+    
 
 
 
@@ -1314,6 +1075,11 @@ It will not impact the appearance and can give developers a lot of support :)
     });
 
     
+        
+            $(function() {
+                $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+                prettyPrint();
+                })
         
     
     
