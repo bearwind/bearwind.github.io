@@ -52,7 +52,7 @@
     
     <title>
         
-            标签: distribution | 
+            spring多线程事务小记 | 
         
         It&#39;s me, Bear &amp; Wind.
     </title>
@@ -63,7 +63,7 @@
 
     <meta name="format-detection" content="telephone=no">
     <meta name="description" itemprop="description" content>
-    <meta name="keywords" content>
+    <meta name="keywords" content=",spring,transaction">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -90,6 +90,9 @@
         <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","https://cdn.jsdelivr.net/gh/viosey/hexo-theme-material@latest/source//css/style.min.css",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
+            
+                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","https://cdn.jsdelivr.net/gh/viosey/hexo-theme-material@latest/source//css/prettify.min.css",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","https://cdn.jsdelivr.net/gh/viosey/hexo-theme-material@latest/source//css/prettify/tomorrow-night-eighties.min.css",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
             
         
 
@@ -245,7 +248,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="It&#39;s me, Bear &amp; Wind.">
-    <meta name="msapplication-starturl" content="https://www.bearwind.xyz/tags/distribution/">
+    <meta name="msapplication-starturl" content="https://www.bearwind.xyz/tech-talker/spring-tx/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="It&#39;s me, Bear &amp; Wind.">
@@ -260,13 +263,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="https://www.bearwind.xyz/tags/distribution/">
+    <meta property="og:url" content="https://www.bearwind.xyz/tech-talker/spring-tx/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="标签: distribution | It&#39;s me, Bear &amp; Wind.">
+    <meta property="og:title" content="spring多线程事务小记 | It&#39;s me, Bear &amp; Wind.">
     <meta property="og:image" content="/img/favicon.png">
     <meta property="og:description" content>
-    
+    <meta property="og:article:tag" content="spring"> <meta property="og:article:tag" content="transaction"> 
 
+    
+        <meta property="article:published_time" content="Thu Mar 25 2021 16:50:00 GMT+0800">
+        <meta property="article:modified_time" content="Mon Jul 05 2021 14:44:24 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -274,13 +280,43 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://www.bearwind.xyz/tags/distribution/index.html">
+        <link rel="canonical" href="https://www.bearwind.xyz/tech-talker/spring-tx/index.html">
     
 
     <!-- Structured-data for SEO -->
     
         
 
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "https://www.bearwind.xyz/tech-talker/spring-tx/index.html",
+    "headline": "spring多线程事务小记",
+    "datePublished": "Thu Mar 25 2021 16:50:00 GMT+0800",
+    "dateModified": "Mon Jul 05 2021 14:44:24 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "NovaWind",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar.png"
+        },
+        "description": "<span style="font-style:italic;font-weight:bolder;">Nova, born to shine!</span>,<span style="font-style:italic;font-weight:bolder;">Wind, born to blow!</span>"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "It&#39;s me, Bear &amp; Wind.",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
+    },
+    "keywords": ",spring,transaction",
+    "description": "",
+}
+</script>
 
 
     
@@ -314,173 +350,328 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
-    <!-- Pin on top -->
     
-        
-            
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#问题背景"><span class="post-toc-number">1.</span> <span class="post-toc-text">问题背景</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#问题探讨"><span class="post-toc-number">2.</span> <span class="post-toc-text">问题探讨</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#问题解决"><span class="post-toc-number">3.</span> <span class="post-toc-text">问题解决</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#手动回滚"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">手动回滚</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关于spring事务失效场景"><span class="post-toc-number">4.</span> <span class="post-toc-text">关于spring事务失效场景</span></a></li></ol>
+    </ul>
+    
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
                 
-                    <!-- Paradox Thumbnail -->
-                    <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+    <!-- Paradox Post Header -->
     
         
             <!-- Random Thumbnail -->
             <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/self-whisper/origin/"><span>[Top]</span>诞生</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            前言
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/self-whisper/origin/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="NovaWind's avatar">
-            </div>
-            <div>
-                <strong>NovaWind</strong>
-                <span>5月 29, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-              <!-- Category -->
-              <span class="post_entry-category">
-                  <a class="post_category-link" href="/categories/self-whisper/">自言自语</a>
-              </span>
-            
-
-            
-
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment">
-                        <span id="sourceId::self-whisper/origin/" class="cy_cmt_count"></span>条评论
-                </span>
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-                
-                
-            
-        
-    
-
-    <!-- Normal Post -->
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/tech-talker/dist_uuid_gen/">分布式环境下的UUID生成策略</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            0 前...
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/tech-talker/dist_uuid_gen/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="NovaWind's avatar">
-            </div>
-            <div>
-                <strong>NovaWind</strong>
-                <span>8月 25, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-              <!-- Category -->
-              <span class="post_entry-category">
-                  <a class="post_category-link" href="/categories/tech-talker/">谈技论术</a>
-              </span>
-            
-
-            
-
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment">
-                        <span id="sourceId::tech-talker/dist_uuid_gen/" class="cy_cmt_count"></span>条评论
-                </span>
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-
-    
-
-    
-        <script type="text/ls-javascript" id="thumbnail-script">
-    var randomNum;
-
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 10; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
     $('.post_thumbnail-random').addClass('lazy');
-
-        locatePost = locatePost.next();
-    }
 </script>
 
+        
+    
+            <p class="article-headline-p">
+                spring多线程事务小记
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar">
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>NovaWind</strong>
+        <span>3月 25, 2021</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/spring/">spring</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/transaction/">transaction</a>
+    </li></ul>
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+        
+            <!-- Busuanzi Views -->
+            <a class="post_share-link" href="#">
+                <li class="mdl-menu__item">
+                    <span id="busuanzi_container_page_pv">
+                        <span id="busuanzi_value_page_pv"></span>&nbsp;浏览量
+                    </span>
+                </li>
+            </a>
+        
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=spring多线程事务小记&url=https://www.bearwind.xyz/tech-talker/spring-tx/index.html&pic=https://www.bearwind.xyz/img/favicon.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+
+    <!-- Share Facebook -->
+    
+
+    <!-- Share Google+ -->
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
     
 </div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <h3 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h3><blockquote>
+<p>定时批处理任务，需要执行大量客户账单，为提升效率，减少DB占用时间，从而采用多线程方式执行任务。主线程任务执行与子线程任务需要保证在一个事务中，完成原子性任务操作。但实际情况是，即使写两个独立service（由于AOP代理，方法内部调用不走代理），并且分别加上<code>@Transactional</code>，只能保证各自的线程事务生效，无法做到全局事务。</p>
+</blockquote>
+<h3 id="问题探讨"><a href="#问题探讨" class="headerlink" title="问题探讨"></a>问题探讨</h3><blockquote>
+<p>通过源码可看到：<strong><em>code copied from “org.springframework.transaction.interceptor.TransactionAspectSupport”</em></strong></p>
+</blockquote>
+<pre><code>/**
+ * Holder to support the {@code currentTransactionStatus()} method,
+ * and to support communication between different cooperating advices
+ * (e.g. before and after advice) if the aspect involves more than a
+ * single method (as will be the case for around advice).
+ */
+private static final ThreadLocal&lt;TransactionInfo&gt; transactionInfoHolder =
+        new NamedThreadLocal&lt;TransactionInfo&gt;(&quot;Current aspect-driven transaction&quot;);
+
+
+/**
+ * Opaque object used to hold Transaction information. Subclasses
+ * must pass it back to methods on this class, but not see its internals.
+ */
+protected final class TransactionInfo {
+
+    private final PlatformTransactionManager transactionManager;
+
+    private final TransactionAttribute transactionAttribute;
+
+    private final String joinpointIdentification;
+
+    private TransactionStatus transactionStatus;
+
+    private TransactionInfo oldTransactionInfo;
+
+    public TransactionInfo(PlatformTransactionManager transactionManager,
+            TransactionAttribute transactionAttribute, String joinpointIdentification) {
+
+        this.transactionManager = transactionManager;
+        this.transactionAttribute = transactionAttribute;
+        this.joinpointIdentification = joinpointIdentification;
+    }
+</code></pre><p>事务信息<code>TransactionInfo</code>，在线程间是通过<code>ThreadLocal</code>进行隔离，每个线程存储自己的副本，因而事务在线程间不共享，所以即使加了<code>@Transactional</code>，也不会使线程间共享一个事务。即：<br>serviceA主线程方法加<code>@Transactional</code>，serviceB子线程方法加<code>@Transactional</code>，子线程异常会回滚自己，但主线程无法感知，所以非异常不会回滚，导致主线程和子线程事务不一致。</p>
+<h3 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h3><h4 id="手动回滚"><a href="#手动回滚" class="headerlink" title="手动回滚"></a>手动回滚</h4><p>通过thread的<code>setUncaughtExceptionHandler</code>，设置未捕获异常处理，然后通过标记，在主线程进行手动回滚</p>
+<pre><code>// 主线程方法
+// 用于标记子线程异常
+private volatile boolean flag = false;
+// ...省略
+@Transactional
+    public void first () {
+        StockIndex s = new StockIndex();
+        s.setStockId(&quot;123&quot;);
+        s.setStockType(2);
+        s.setAccessDate(new Date());
+        sim.insertSelective(s);
+
+        Thread t = new Thread(() -&gt; {
+            testTx2.second();
+        });
+
+        t.setUncaughtExceptionHandler((th, e) -&gt; {
+            System.out.println(&quot;uncaunght&quot;);
+            flag = true;
+        });
+        t.start();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        //throw new RuntimeException(&quot;stop!&quot;);
+
+        if (flag) {
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+        }
+    }
+    // 子线程方法
+    @Transactional
+    public void second () {
+        StockIndex s = new StockIndex();
+        s.setStockId(&quot;1234&quot;);
+        s.setStockType(1);
+        s.setAccessDate(new Date());
+        sim.insertSelective(s);
+        throw new RuntimeException(&quot;!!!&quot;);
+    }
+    // 调用
+    @Test
+    public void testTx () {
+        testTx.first();
+    }
+</code></pre><h3 id="关于spring事务失效场景"><a href="#关于spring事务失效场景" class="headerlink" title="关于spring事务失效场景"></a>关于spring事务失效场景</h3><ul>
+<li>service里方法内部调用，由于内部调用不走代理；</li>
+<li>多线程事务，各自事务相互独立；</li>
+<li><code>@Transactional</code>加载了接口方法上，由于该注解不支持接口级别的继承，源于jdk元注解：<blockquote>
+<p><strong><em>copied from java.lang.annotation.Inherited</em></strong><br>Note also that this meta-annotation only causes annotations to be inherited<br>from superclasses; annotations on implemented interfaces have no effect.</p>
+</blockquote>
+</li>
+<li>加注解的方法，非public，导致代理无法生效</li>
+<li>…</li>
+</ul>
+
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 changyan -->
+<div id="changyan-comment">
+    <!--PC和WAP自适应版-->
+<div id="SOHUCS" sid="tech-talker/spring-tx/"></div>
+<script type="text/javascript">
+(function(){
+var appid = '';
+var conf = '';
+var width = window.innerWidth || document.documentElement.clientWidth;
+if (width < 960) {
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+
+</div>
+<style>
+    #changyan-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/tech-talker/rebuild_with_design_pattern/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     
@@ -704,6 +895,14 @@ It will not impact the appearance and can give developers a lot of support :)
                     
 
                     
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
 
                     <!--Footer-->
 <footer class="mdl-mini-footer" id="bottom">
@@ -860,6 +1059,10 @@ It will not impact the appearance and can give developers a lot of support :)
 <!-- Import prettify js  -->
 
     
+        
+            <script>lsloader.load("prettify_js","https://cdn.jsdelivr.net/gh/viosey/hexo-theme-material@latest/source//js/prettify.min.js", true)</script>
+        
+    
 
 
 
@@ -872,6 +1075,11 @@ It will not impact the appearance and can give developers a lot of support :)
     });
 
     
+        
+            $(function() {
+                $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+                prettyPrint();
+                })
         
     
     
